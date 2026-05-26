@@ -1,0 +1,295 @@
+{
+  "metadata": {
+    "project": "ASTRO_PREMIUM",
+    "version": "1.0",
+    "type": "compatibility_report",
+    "note": "Première version de compatibilité basée sur signes, éléments et modes. La vraie synastrie par aspects précis sera ajoutée ensuite."
+  },
+  "people": {
+    "person_a": {
+      "name": "Test",
+      "sun": "Capricorne",
+      "moon": "Poissons",
+      "ascendant": "Poissons",
+      "venus": "Verseau",
+      "mars": "Sagittaire"
+    },
+    "person_b": {
+      "name": "Personne B",
+      "sun": "Gémeaux",
+      "moon": "Capricorne",
+      "ascendant": "Scorpion",
+      "venus": "Gémeaux",
+      "mars": "Taureau"
+    }
+  },
+  "scores": {
+    "love": {
+      "label": "Amour",
+      "score": 81,
+      "level": "Très forte"
+    },
+    "friendship": {
+      "label": "Amitié",
+      "score": 85,
+      "level": "Exceptionnelle"
+    },
+    "work": {
+      "label": "Travail",
+      "score": 63,
+      "level": "Équilibrée"
+    },
+    "global": {
+      "label": "Compatibilité globale",
+      "score": 78,
+      "level": "Très forte"
+    }
+  },
+  "details": {
+    "love_pairs": [
+      {
+        "keyA": "sun",
+        "keyB": "moon",
+        "signA": "Capricorn",
+        "signB": "Capricorn",
+        "signA_fr": "Capricorne",
+        "signB_fr": "Capricorne",
+        "elementA": "Terre",
+        "elementB": "Terre",
+        "modeA": "Cardinal",
+        "modeB": "Cardinal",
+        "rawScore": 26,
+        "weight": 1.2,
+        "weightedScore": 31.2
+      },
+      {
+        "keyA": "moon",
+        "keyB": "moon",
+        "signA": "Pisces",
+        "signB": "Capricorn",
+        "signA_fr": "Poissons",
+        "signB_fr": "Capricorne",
+        "elementA": "Eau",
+        "elementB": "Terre",
+        "modeA": "Mutable",
+        "modeB": "Cardinal",
+        "rawScore": 23,
+        "weight": 1.3,
+        "weightedScore": 29.900000000000002
+      },
+      {
+        "keyA": "venus",
+        "keyB": "mars",
+        "signA": "Aquarius",
+        "signB": "Taurus",
+        "signA_fr": "Verseau",
+        "signB_fr": "Taureau",
+        "elementA": "Air",
+        "elementB": "Terre",
+        "modeA": "Fixe",
+        "modeB": "Fixe",
+        "rawScore": 15,
+        "weight": 1.4,
+        "weightedScore": 21
+      },
+      {
+        "keyA": "mars",
+        "keyB": "venus",
+        "signA": "Sagittarius",
+        "signB": "Gemini",
+        "signA_fr": "Sagittaire",
+        "signB_fr": "Gémeaux",
+        "elementA": "Feu",
+        "elementB": "Air",
+        "modeA": "Mutable",
+        "modeB": "Mutable",
+        "rawScore": 24,
+        "weight": 1.4,
+        "weightedScore": 33.599999999999994
+      },
+      {
+        "keyA": "ascendant",
+        "keyB": "sun",
+        "signA": "Pisces",
+        "signB": "Gemini",
+        "signA_fr": "Poissons",
+        "signB_fr": "Gémeaux",
+        "elementA": "Eau",
+        "elementB": "Air",
+        "modeA": "Mutable",
+        "modeB": "Mutable",
+        "rawScore": 17,
+        "weight": 1,
+        "weightedScore": 17
+      }
+    ],
+    "friendship_pairs": [
+      {
+        "keyA": "sun",
+        "keyB": "sun",
+        "signA": "Capricorn",
+        "signB": "Gemini",
+        "signA_fr": "Capricorne",
+        "signB_fr": "Gémeaux",
+        "elementA": "Terre",
+        "elementB": "Air",
+        "modeA": "Cardinal",
+        "modeB": "Mutable",
+        "rawScore": 14,
+        "weight": 1.2,
+        "weightedScore": 16.8
+      },
+      {
+        "keyA": "moon",
+        "keyB": "moon",
+        "signA": "Pisces",
+        "signB": "Capricorn",
+        "signA_fr": "Poissons",
+        "signB_fr": "Capricorne",
+        "elementA": "Eau",
+        "elementB": "Terre",
+        "modeA": "Mutable",
+        "modeB": "Cardinal",
+        "rawScore": 23,
+        "weight": 1.2,
+        "weightedScore": 27.599999999999998
+      },
+      {
+        "keyA": "mercury",
+        "keyB": "mercury",
+        "signA": "Capricorn",
+        "signB": "Cancer",
+        "signA_fr": "Capricorne",
+        "signB_fr": "Cancer",
+        "elementA": "Terre",
+        "elementB": "Eau",
+        "modeA": "Cardinal",
+        "modeB": "Cardinal",
+        "rawScore": 24,
+        "weight": 1.2,
+        "weightedScore": 28.799999999999997
+      },
+      {
+        "keyA": "venus",
+        "keyB": "venus",
+        "signA": "Aquarius",
+        "signB": "Gemini",
+        "signA_fr": "Verseau",
+        "signB_fr": "Gémeaux",
+        "elementA": "Air",
+        "elementB": "Air",
+        "modeA": "Fixe",
+        "modeB": "Mutable",
+        "rawScore": 25,
+        "weight": 1,
+        "weightedScore": 25
+      },
+      {
+        "keyA": "ascendant",
+        "keyB": "ascendant",
+        "signA": "Pisces",
+        "signB": "Scorpio",
+        "signA_fr": "Poissons",
+        "signB_fr": "Scorpion",
+        "elementA": "Eau",
+        "elementB": "Eau",
+        "modeA": "Mutable",
+        "modeB": "Fixe",
+        "rawScore": 25,
+        "weight": 1,
+        "weightedScore": 25
+      }
+    ],
+    "work_pairs": [
+      {
+        "keyA": "sun",
+        "keyB": "saturn",
+        "signA": "Capricorn",
+        "signB": "Aquarius",
+        "signA_fr": "Capricorne",
+        "signB_fr": "Verseau",
+        "elementA": "Terre",
+        "elementB": "Air",
+        "modeA": "Cardinal",
+        "modeB": "Fixe",
+        "rawScore": 13,
+        "weight": 1.1,
+        "weightedScore": 14.3
+      },
+      {
+        "keyA": "saturn",
+        "keyB": "sun",
+        "signA": "Capricorn",
+        "signB": "Gemini",
+        "signA_fr": "Capricorne",
+        "signB_fr": "Gémeaux",
+        "elementA": "Terre",
+        "elementB": "Air",
+        "modeA": "Cardinal",
+        "modeB": "Mutable",
+        "rawScore": 14,
+        "weight": 1.1,
+        "weightedScore": 15.400000000000002
+      },
+      {
+        "keyA": "mercury",
+        "keyB": "mercury",
+        "signA": "Capricorn",
+        "signB": "Cancer",
+        "signA_fr": "Capricorne",
+        "signB_fr": "Cancer",
+        "elementA": "Terre",
+        "elementB": "Eau",
+        "modeA": "Cardinal",
+        "modeB": "Cardinal",
+        "rawScore": 24,
+        "weight": 1.3,
+        "weightedScore": 31.200000000000003
+      },
+      {
+        "keyA": "mars",
+        "keyB": "mars",
+        "signA": "Sagittarius",
+        "signB": "Taurus",
+        "signA_fr": "Sagittaire",
+        "signB_fr": "Taureau",
+        "elementA": "Feu",
+        "elementB": "Terre",
+        "modeA": "Mutable",
+        "modeB": "Fixe",
+        "rawScore": 15,
+        "weight": 1.1,
+        "weightedScore": 16.5
+      },
+      {
+        "keyA": "jupiter",
+        "keyB": "saturn",
+        "signA": "Cancer",
+        "signB": "Aquarius",
+        "signA_fr": "Cancer",
+        "signB_fr": "Verseau",
+        "elementA": "Eau",
+        "elementB": "Air",
+        "modeA": "Cardinal",
+        "modeB": "Fixe",
+        "rawScore": 15,
+        "weight": 1,
+        "weightedScore": 15
+      }
+    ]
+  },
+  "synthesis": {
+    "strengths": [
+      "La dynamique affective montre une bonne résonance émotionnelle et relationnelle.",
+      "La complicité naturelle peut être forte, avec une bonne capacité à se comprendre."
+    ],
+    "tensions": [
+      "La collaboration peut demander une clarification des rôles, des priorités et du rythme de chacun."
+    ],
+    "recommendations": [
+      "Utiliser cette première lecture comme un indicateur général, puis affiner avec une vraie synastrie par aspects.",
+      "Ajouter ensuite les aspects exacts entre les deux cartes : Soleil-Lune, Vénus-Mars, Lune-Lune, Ascendant-planètes.",
+      "Transformer les scores en explications premium lisibles par le client final."
+    ]
+  }
+}

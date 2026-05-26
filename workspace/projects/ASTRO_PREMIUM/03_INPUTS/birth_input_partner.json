@@ -1,0 +1,24 @@
+{
+  "client": {
+    "first_name": "Personne B",
+    "email": "",
+    "main_intention": "compatibilité amoureuse",
+    "language": "fr"
+  },
+  "birth_data": {
+    "year": 1992,
+    "month": 6,
+    "day": 15,
+    "hour": 18,
+    "minute": 30,
+    "second": 0,
+    "birth_date": "1992-06-15",
+    "birth_time": "18:30",
+    "birth_city": "Paris",
+    "birth_country": "France",
+    "timezone": 1,
+    "latitude": 48.8566,
+    "longitude": 2.3522,
+    "birth_time_quality": "exact"
+  }
+}
