@@ -1,0 +1,22 @@
+{
+  "client": {
+    "first_name": "Test",
+    "email": "",
+    "main_intention": "connaissance de soi",
+    "language": "fr"
+  },
+  "birth_data": {
+    "year": 1990,
+    "month": 1,
+    "day": 1,
+    "hour": 12,
+    "minute": 0,
+    "second": 0,
+    "birth_city": "Paris",
+    "birth_country": "France",
+    "latitude": 48.8566,
+    "longitude": 2.3522,
+    "timezone": 1,
+    "birth_time_quality": "exact"
+  }
+}

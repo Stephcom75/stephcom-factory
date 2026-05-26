@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Carte natale premium</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at 50% 8%, #352260 0%, #121331 42%, #050817 100%);
+  color: #f8efe0;
+  font-family: Inter, Arial, sans-serif;
+}
+
+.app {
+  max-width: 1540px;
+  margin: 0 auto;
+  padding: 26px;
+}
+
+.topbar {
+  border: 1px solid rgba(255,214,138,.22);
+  background: rgba(6,9,26,.76);
+  border-radius: 28px;
+  padding: 18px 24px;
+  margin-bottom: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 24px 80px rgba(0,0,0,.34);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255,214,138,.55);
+  color: #f8d68b;
+  font-size: 30px;
+  background: radial-gradient(circle, rgba(255,214,138,.18), rgba(255,214,138,.03));
+}
+
+.brand-title {
+  font-family: Cinzel, serif;
+  font-size: 25px;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+}
+
+.brand-sub {
+  font-size: 12px;
+  color: #bfb6d7;
+  margin-top: 3px;
+}
+
+.nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.nav div {
+  padding: 12px 16px;
+  border-radius: 16px;
+  color: #bfb6d7;
+  font-size: 14px;
+}
+
+.nav .active {
+  color: #f8d68b;
+  border: 1px solid rgba(255,214,138,.38);
+  background: rgba(255,214,138,.08);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 118px 1.35fr .9fr;
+  gap: 22px;
+}
+
+.sidebar,
+.card {
+  border: 1px solid rgba(255,214,138,.18);
+  background: linear-gradient(145deg, rgba(22,22,55,.88), rgba(9,10,28,.84));
+  border-radius: 28px;
+  box-shadow: 0 30px 90px rgba(0,0,0,.35);
+}
+
+.sidebar {
+  padding: 18px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.side {
+  height: 74px;
+  border-radius: 20px;
+  color: #aeb0c7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+}
+
+.side b {
+  font-size: 23px;
+}
+
+.side.active {
+  color: #f8d68b;
+  background: linear-gradient(135deg, rgba(255,214,138,.26), rgba(255,214,138,.06));
+  border: 1px solid rgba(255,214,138,.26);
+}
+
+.promo {
+  margin-top: auto;
+  border: 1px solid rgba(255,214,138,.35);
+  border-radius: 20px;
+  padding: 14px;
+  text-align: center;
+  color: #f8d68b;
+  font-size: 12px;
+}
+
+.promo button {
+  margin-top: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 14px;
+  padding: 11px;
+  background: linear-gradient(135deg, #f9d989, #be8b3a);
+  color: #1d1730;
+  font-weight: 800;
+}
+
+.chart-card {
+  padding: 28px;
+}
+
+.title {
+  font-family: Cinzel, serif;
+  font-size: 26px;
+  margin: 0 0 18px;
+}
+
+.title span {
+  color: #f8d68b;
+}
+
+svg {
+  width: 100%;
+  max-width: 860px;
+  display: block;
+  margin: auto;
+}
+
+.outer {
+  fill: none;
+  stroke: rgba(255,214,138,.9);
+  stroke-width: 2.2;
+  filter: url(#glow);
+}
+
+.mid {
+  fill: none;
+  stroke: rgba(255,214,138,.32);
+  stroke-width: 1.2;
+}
+
+.inner {
+  fill: rgba(255,255,255,.025);
+  stroke: rgba(255,214,138,.22);
+  stroke-width: 1.2;
+}
+
+.zodiac-line {
+  stroke: rgba(255,214,138,.48);
+  stroke-width: 1.15;
+}
+
+.house-line {
+  stroke: rgba(210,223,255,.34);
+  stroke-width: 1;
+}
+
+.major-tick {
+  stroke: rgba(255,214,138,.62);
+  stroke-width: 1.2;
+}
+
+.minor-tick {
+  stroke: rgba(255,214,138,.28);
+  stroke-width: .8;
+}
+
+.axis {
+  stroke-width: 3;
+  filter: url(#glow);
+}
+
+.asc {
+  stroke: #f8d68b;
+}
+
+.mc {
+  stroke: #8ee5ff;
+}
+
+.axis-label {
+  fill: #fff;
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.zodiac-glyph {
+  fill: #f8d68b;
+  font-size: 35px;
+  font-weight: 800;
+}
+
+.sign-label {
+  fill: #f5dfb0;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.house-label {
+  fill: #fff;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.planet circle {
+  fill: #fff4ce;
+  stroke: #f8d68b;
+  stroke-width: 2.5;
+  filter: url(#planetGlow);
+}
+
+.planet text {
+  fill: #18142f;
+  font-size: 30px;
+  font-weight: 900;
+}
+
+.legend {
+  margin: 18px auto 0;
+  max-width: 720px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  border: 1px solid rgba(255,214,138,.22);
+  background: rgba(255,255,255,.04);
+  border-radius: 22px;
+  padding: 16px 22px;
+}
+
+.legend div {
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.legend b {
+  color: #f8d68b;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.panel {
+  padding: 24px;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+  font-size: 14px;
+}
+
+th {
+  text-align: left;
+  color: #f8d68b;
+  padding: 0 12px 8px;
+}
+
+td {
+  background: rgba(255,255,255,.055);
+  padding: 12px;
+  border-top: 1px solid rgba(255,255,255,.06);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+td:first-child {
+  border-left: 1px solid rgba(255,255,255,.06);
+  border-radius: 14px 0 0 14px;
+  font-weight: 800;
+}
+
+td:last-child {
+  border-right: 1px solid rgba(255,255,255,.06);
+  border-radius: 0 14px 14px 0;
+  text-align: center;
+}
+
+.mini {
+  display: inline-grid;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: rgba(248,214,139,.1);
+  color: #f8d68b;
+  margin-right: 8px;
+  font-size: 18px;
+}
+
+.note {
+  margin-top: 14px;
+  color: #f8d68b;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.people {
+  display: grid;
+  grid-template-columns: 1fr 54px 1fr;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.person,
+.link {
+  border: 1px solid rgba(255,214,138,.22);
+  background: rgba(255,255,255,.05);
+  border-radius: 22px;
+}
+
+.person {
+  padding: 14px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.avatar,
+.link {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #f8d68b;
+}
+
+.avatar {
+  background: radial-gradient(circle, rgba(248,214,139,.3), rgba(248,214,139,.06));
+  border: 1px solid rgba(248,214,139,.42);
+}
+
+.person small {
+  display: block;
+  color: #bfb6d7;
+  margin-top: 2px;
+}
+
+.scores {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+.score {
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.045);
+  border-radius: 22px;
+  padding: 18px;
+  text-align: center;
+}
+
+.ring {
+  width: 106px;
+  height: 106px;
+  border-radius: 50%;
+  margin: 12px auto 10px;
+  display: grid;
+  place-items: center;
+  background: conic-gradient(var(--c) calc(var(--s) * 1%), rgba(255,255,255,.08) 0);
+  position: relative;
+}
+
+.ring:before {
+  content: "";
+  position: absolute;
+  inset: 11px;
+  border-radius: 50%;
+  background: #151634;
+}
+
+.ring b {
+  position: relative;
+  font-family: Cinzel, serif;
+  font-size: 28px;
+}
+
+.compare {
+  margin-top: 16px;
+  width: 100%;
+  border: none;
+  border-radius: 18px;
+  padding: 16px;
+  background: linear-gradient(135deg, #f9d989, #c99745);
+  color: #1d1730;
+  font-weight: 900;
+  font-size: 15px;
+}
+
+@media(max-width:1200px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .legend,
+  .scores {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo">✦</div>
+      <div>
+        <div class="brand-title">Carte Natale</div>
+        <div class="brand-sub">Test — 1990-01-01 à 12:00, Paris</div>
+      </div>
+    </div>
+    <div class="nav">
+      <div class="active">◎ Carte natale</div>
+      <div>◌ Transits</div>
+      <div>∞ Synastrie</div>
+      <div>☉ Révolutions solaires</div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <aside class="sidebar">
+      <div class="side active"><b>☉</b>Résumé</div>
+      <div class="side"><b>☿</b>Planètes</div>
+      <div class="side"><b>⌂</b>Maisons</div>
+      <div class="side"><b>△</b>Aspects</div>
+      <div class="side"><b>♡</b>Compatibilités</div>
+      <div class="promo">Débloquez tout votre potentiel<button>Passer Premium</button></div>
+    </aside>
+
+    <main class="card chart-card">
+      <h1 class="title"><span>✧</span> Votre carte natale</h1>
+      <svg viewBox="0 0 860 860">
+        <defs>
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="2.5" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="planetGlow" x="-80%" y="-80%" width="260%" height="260%">
+            <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#f8d68b" flood-opacity=".45"/>
+          </filter>
+        </defs>
+
+        <circle cx="430" cy="430" r="350" class="outer"/>
+        <circle cx="430" cy="430" r="308" class="mid"/>
+        <circle cx="430" cy="430" r="135" class="inner"/>
+
+        <line x1="420.77" y1="564.68" x2="406.08" y2="779.18" class="zodiac-line" /><text x="326.90" y="730.82" class="zodiac-glyph" text-anchor="middle" dominant-baseline="middle">♈</text><text x="337.27" y="700.55" class="sign-label" text-anchor="middle" dominant-baseline="middle">Bélier</text><line x1="408.27" y1="747.26" x2="406.63" y2="771.20" class="major-tick" /><line x1="378.84" y1="756.01" x2="376.98" y2="767.87" class="minor-tick" /><line x1="350.62" y1="750.31" x2="347.73" y2="761.96" class="minor-tick" /><line x1="323.01" y1="742.17" x2="319.12" y2="753.53" class="minor-tick" /><line x1="296.21" y1="731.66" x2="291.34" y2="742.63" class="minor-tick" /><line x1="270.42" y1="718.85" x2="264.62" y2="729.36" class="minor-tick" /><line x1="354.67" y1="542.03" x2="234.69" y2="720.44" class="zodiac-line" /><text x="190.30" y="638.97" class="zodiac-glyph" text-anchor="middle" dominant-baseline="middle">♉</text><text x="214.42" y="617.94" class="sign-label" text-anchor="middle" dominant-baseline="middle">Taureau</text><line x1="252.55" y1="693.89" x2="239.16" y2="713.80" class="major-tick" /><line x1="222.69" y1="686.75" x2="215.15" y2="696.09" class="minor-tick" /><line x1="201.10" y1="667.71" x2="192.78" y2="676.35" class="minor-tick" /><line x1="181.25" y1="646.85" x2="172.21" y2="654.74" class="minor-tick" /><line x1="163.30" y1="624.35" x2="153.60" y2="631.42" class="minor-tick" /><line x1="147.38" y1="600.36" x2="137.10" y2="606.56" class="minor-tick" /><line x1="308.75" y1="489.35" x2="115.64" y2="583.88" class="zodiac-line" /><text x="117.93" y="491.12" class="zodiac-glyph" text-anchor="middle" dominant-baseline="middle">♊</text><text x="149.33" y="484.97" class="sign-label" text-anchor="middle" dominant-baseline="middle">Gémeaux</text><line x1="144.38" y1="569.81" x2="122.83" y2="580.36" class="major-tick" /><line x1="122.09" y1="548.70" x2="110.89" y2="553.02" class="minor-tick" /><line x1="112.91" y1="521.41" x2="101.38" y2="524.73" class="minor-tick" /><line x1="106.15" y1="493.43" x2="94.38" y2="495.73" class="minor-tick" /><line x1="101.86" y1="464.96" x2="89.92" y2="466.23" class="minor-tick" /><line x1="100.06" y1="436.23" x2="88.06" y2="436.45" class="minor-tick" /><line x1="295.32" y1="420.77" x2="80.82" y2="406.08" class="zodiac-line" /><text x="129.18" y="326.90" class="zodiac-glyph" text-anchor="middle" dominant-baseline="middle">♋</text><text x="159.45" y="337.27" class="sign-label" text-anchor="middle" dominant-baseline="middle">Cancer</text><line x1="112.74" y1="408.27" x2="88.80" y2="406.63" class="major-tick" /><line x1="103.99" y1="378.84" x2="92.13" y2="376.98" class="minor-tick" /><line x1="109.69" y1="350.62" x2="98.04" y2="347.73" class="minor-tick" /><line x1="117.83" y1="323.01" x2="106.47" y2="319.12" class="minor-tick" /><line x1="128.34" y1="296.21" x2="117.37" y2="291.34" class="minor-tick" /><line x1="141.15" y1="270.42" x2="130.64" y2="264.62" class="minor-tick" /><line x1="317.97" y1="354.67" x2="139.56" y2="234.69" class="zodiac-line" /><text x="221.03" y="190.30" class="zodiac-glyph" text-anchor="middle" dominant-baseline="middle">♌</text><text x="242.06" y="214.42" class="sign-label" text-anchor="middle" dominant-baseline="middle">Lion</text><line x1="166.11" y1="252.55" x2="146.20" y2="239.16" class="major-tick" /><line x1="173.25" y1="222.69" x2="163.91" y2="215.15" class="minor-tick" /><line x1="192.29" y1="201.10" x2="183.65" y2="192.78" class="minor-tick" /><line x1="213.15" y1="181.25" x2="205.26" y2="172.21" class="minor-tick" /><line x1="235.65" y1="163.30" x2="228.58" y2="153.60" class="minor-tick" /><line x1="259.64" y1="147.38" x2="253.44" y2="137.10" class="minor-tick" /><line x1="370.65" y1="308.75" x2="276.12" y2="115.64" class="zodiac-line" /><text x="368.88" y="117.93" class="zodiac-glyph" text-anchor="middle" dominant-baseline="middle">♍</text><text x="375.03" y="149.33" class="sign-label" text-anchor="middle" dominant-baseline="middle">Vierge</text><line x1="290.19" y1="144.38" x2="279.64" y2="122.83" class="major-tick" /><line x1="311.30" y1="122.09" x2="306.98" y2="110.89" class="minor-tick" /><line x1="338.59" y1="112.91" x2="335.27" y2="101.38" class="minor-tick" /><line x1="366.57" y1="106.15" x2="364.27" y2="94.38" class="minor-tick" /><line x1="395.04" y1="101.86" x2="393.77" y2="89.92" class="minor-tick" /><line x1="423.77" y1="100.06" x2="423.55" y2="88.06" class="minor-tick" /><line x1="439.23" y1="295.32" x2="453.92" y2="80.82" class="zodiac-line" /><text x="533.10" y="129.18" class="zodiac-glyph" text-anchor="middle" dominant-baseline="middle">♎</text><text x="522.73" y="159.45" class="sign-label" text-anchor="middle" dominant-baseline="middle">Balance</text><line x1="451.73" y1="112.74" x2="453.37" y2="88.80" class="major-tick" /><line x1="481.16" y1="103.99" x2="483.02" y2="92.13" class="minor-tick" /><line x1="509.38" y1="109.69" x2="512.27" y2="98.04" class="minor-tick" /><line x1="536.99" y1="117.83" x2="540.88" y2="106.47" class="minor-tick" /><line x1="563.79" y1="128.34" x2="568.66" y2="117.37" class="minor-tick" /><line x1="589.58" y1="141.15" x2="595.38" y2="130.64" class="minor-tick" /><line x1="505.33" y1="317.97" x2="625.31" y2="139.56" class="zodiac-line" /><text x="669.70" y="221.03" class="zodiac-glyph" text-anchor="middle" dominant-baseline="middle">♏</text><text x="645.58" y="242.06" class="sign-label" text-anchor="middle" dominant-baseline="middle">Scorpion</text><line x1="607.45" y1="166.11" x2="620.84" y2="146.20" class="major-tick" /><line x1="637.31" y1="173.25" x2="644.85" y2="163.91" class="minor-tick" /><line x1="658.90" y1="192.29" x2="667.22" y2="183.65" class="minor-tick" /><line x1="678.75" y1="213.15" x2="687.79" y2="205.26" class="minor-tick" /><line x1="696.70" y1="235.65" x2="706.40" y2="228.58" class="minor-tick" /><line x1="712.62" y1="259.64" x2="722.90" y2="253.44" class="minor-tick" /><line x1="551.25" y1="370.65" x2="744.36" y2="276.12" class="zodiac-line" /><text x="742.07" y="368.88" class="zodiac-glyph" text-anchor="middle" dominant-baseline="middle">♐</text><text x="710.67" y="375.03" class="sign-label" text-anchor="middle" dominant-baseline="middle">Sagittaire</text><line x1="715.62" y1="290.19" x2="737.17" y2="279.64" class="major-tick" /><line x1="737.91" y1="311.30" x2="749.11" y2="306.98" class="minor-tick" /><line x1="747.09" y1="338.59" x2="758.62" y2="335.27" class="minor-tick" /><line x1="753.85" y1="366.57" x2="765.62" y2="364.27" class="minor-tick" /><line x1="758.14" y1="395.04" x2="770.08" y2="393.77" class="minor-tick" /><line x1="759.94" y1="423.77" x2="771.94" y2="423.55" class="minor-tick" /><line x1="564.68" y1="439.23" x2="779.18" y2="453.92" class="zodiac-line" /><text x="730.82" y="533.10" class="zodiac-glyph" text-anchor="middle" dominant-baseline="middle">♑</text><text x="700.55" y="522.73" class="sign-label" text-anchor="middle" dominant-baseline="middle">Capricorne</text><line x1="747.26" y1="451.73" x2="771.20" y2="453.37" class="major-tick" /><line x1="756.01" y1="481.16" x2="767.87" y2="483.02" class="minor-tick" /><line x1="750.31" y1="509.38" x2="761.96" y2="512.27" class="minor-tick" /><line x1="742.17" y1="536.99" x2="753.53" y2="540.88" class="minor-tick" /><line x1="731.66" y1="563.79" x2="742.63" y2="568.66" class="minor-tick" /><line x1="718.85" y1="589.58" x2="729.36" y2="595.38" class="minor-tick" /><line x1="542.03" y1="505.33" x2="720.44" y2="625.31" class="zodiac-line" /><text x="638.97" y="669.70" class="zodiac-glyph" text-anchor="middle" dominant-baseline="middle">♒</text><text x="617.94" y="645.58" class="sign-label" text-anchor="middle" dominant-baseline="middle">Verseau</text><line x1="693.89" y1="607.45" x2="713.80" y2="620.84" class="major-tick" /><line x1="686.75" y1="637.31" x2="696.09" y2="644.85" class="minor-tick" /><line x1="667.71" y1="658.90" x2="676.35" y2="667.22" class="minor-tick" /><line x1="646.85" y1="678.75" x2="654.74" y2="687.79" class="minor-tick" /><line x1="624.35" y1="696.70" x2="631.42" y2="706.40" class="minor-tick" /><line x1="600.36" y1="712.62" x2="606.56" y2="722.90" class="minor-tick" /><line x1="489.35" y1="551.25" x2="583.88" y2="744.36" class="zodiac-line" /><text x="491.12" y="742.07" class="zodiac-glyph" text-anchor="middle" dominant-baseline="middle">♓</text><text x="484.97" y="710.67" class="sign-label" text-anchor="middle" dominant-baseline="middle">Poissons</text><line x1="569.81" y1="715.62" x2="580.36" y2="737.17" class="major-tick" /><line x1="548.70" y1="737.91" x2="553.02" y2="749.11" class="minor-tick" /><line x1="521.41" y1="747.09" x2="524.73" y2="758.62" class="minor-tick" /><line x1="493.43" y1="753.85" x2="495.73" y2="765.62" class="minor-tick" /><line x1="464.96" y1="758.14" x2="466.23" y2="770.08" class="minor-tick" /><line x1="436.23" y1="759.94" x2="436.45" y2="771.94" class="minor-tick" />
+        <line x1="430.00" y1="537.00" x2="430.00" y2="804.00" class="axis asc" /><text x="430.00" y="826.00" class="axis-label" text-anchor="middle" dominant-baseline="middle">ASC</text><line x1="536.92" y1="434.21" x2="803.71" y2="444.72" class="axis mc" /><text x="825.69" y="445.59" class="axis-label" text-anchor="middle" dominant-baseline="middle">MC</text>
+        <g class="planet"><circle cx="637.01" cy="484.26" r="26"></circle><text x="637.01" y="484.26" text-anchor="middle" dominant-baseline="middle">☉</text></g><g class="planet"><circle cx="505.42" cy="604.39" r="26"></circle><text x="505.42" y="604.39" text-anchor="middle" dominant-baseline="middle">☽</text></g><g class="planet"><circle cx="574.37" cy="511.93" r="26"></circle><text x="574.37" y="511.93" text-anchor="middle" dominant-baseline="middle">☿</text></g><g class="planet"><circle cx="593.60" cy="567.95" r="26"></circle><text x="593.60" y="567.95" text-anchor="middle" dominant-baseline="middle">♀️</text></g><g class="planet"><circle cx="612.54" cy="377.28" r="26"></circle><text x="612.54" y="377.28" text-anchor="middle" dominant-baseline="middle">♂️</text></g><g class="planet"><circle cx="266.07" cy="403.87" r="26"></circle><text x="266.07" y="403.87" text-anchor="middle" dominant-baseline="middle">♃</text></g><g class="planet"><circle cx="631.64" cy="501.68" r="26"></circle><text x="631.64" y="501.68" text-anchor="middle" dominant-baseline="middle">♄</text></g><g class="planet"><circle cx="617.28" cy="462.01" r="26"></circle><text x="617.28" y="462.01" text-anchor="middle" dominant-baseline="middle">♅</text></g><g class="planet"><circle cx="589.61" cy="475.63" r="26"></circle><text x="589.61" y="475.63" text-anchor="middle" dominant-baseline="middle">♆</text></g><g class="planet"><circle cx="596.65" cy="295.74" r="26"></circle><text x="596.65" y="295.74" text-anchor="middle" dominant-baseline="middle">♇</text></g>
+      </svg>
+
+      <div class="legend">
+        <div><b>ASC</b><br>Pisces<br>26°04'53&quot; Pisces</div>
+        <div><b>MC</b><br>Sagittarius<br>28°20'13&quot; Sagittarius</div>
+        <div><b>Système</b><br>Placidus<br>Carte natale</div>
+      </div>
+    </main>
+
+    <section class="right">
+      <div class="card panel">
+        <h2 class="title"><span>✧</span> Positions principales</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Astre</th>
+              <th>Signe</th>
+              <th>Position</th>
+              <th>Maison</th>
+            </tr>
+          </thead>
+          <tbody><tr><td><span class="mini">☉</span>Soleil</td><td>Capricorn</td><td>10°46'12&quot; Capricorn</td><td>10</td></tr><tr><td><span class="mini">☽</span>Lune</td><td>Pisces</td><td>2°41'38&quot; Pisces</td><td>12</td></tr><tr><td><span class="mini">☿</span>Mercure</td><td>Capricorn</td><td>25°39'23&quot; Capricorn</td><td>11</td></tr><tr><td><span class="mini">♀️</span>Vénus</td><td>Aquarius</td><td>6°13'12&quot; Aquarius</td><td>11</td></tr><tr><td><span class="mini">♂️</span>Mars</td><td>Sagittarius</td><td>9°58'15&quot; Sagittarius</td><td>9</td></tr><tr><td><span class="mini">♃</span>Jupiter</td><td>Cancer</td><td>5°08'19&quot; Cancer</td><td>4</td></tr><tr><td><span class="mini">♄</span>Saturne</td><td>Capricorn</td><td>15°39'03&quot; Capricorn</td><td>10</td></tr><tr><td><span class="mini">♅</span>Uranus</td><td>Capricorn</td><td>5°46'49&quot; Capricorn</td><td>10</td></tr><tr><td><span class="mini">♆</span>Neptune</td><td>Capricorn</td><td>12°02'04&quot; Capricorn</td><td>10</td></tr><tr><td><span class="mini">♇</span>Pluton</td><td>Scorpio</td><td>17°13'30&quot; Scorpio</td><td>8</td></tr></tbody>
+        </table>
+        <div class="note">
+          Ascendant : <strong>Pisces</strong> — 26°04'53&quot; Pisces<br>
+          Milieu du Ciel : <strong>Sagittarius</strong> — 28°20'13&quot; Sagittarius
+        </div>
+      </div>
+
+      <div class="card panel">
+        <h2 class="title"><span>✦</span> Compatibilités</h2>
+        <div class="people">
+          <div class="person">
+            <div class="avatar">A</div>
+            <div><strong>Personne A</strong><small>Test</small></div>
+          </div>
+          <div class="link">∞</div>
+          <div class="person">
+            <div class="avatar">+</div>
+            <div><strong>Personne B</strong><small>À sélectionner</small></div>
+          </div>
+        </div>
+
+        <div class="scores">
+          <div class="score" style="--s:82;--c:#ff7f9f">♡ Amour<div class="ring"><b>82%</b></div><small>Excellente</small></div>
+          <div class="score" style="--s:76;--c:#b884ff">♢ Amitié<div class="ring"><b>76%</b></div><small>Très bonne</small></div>
+          <div class="score" style="--s:68;--c:#86b8ff">▣ Travail<div class="ring"><b>68%</b></div><small>Bonne</small></div>
+        </div>
+
+        <button class="compare">Comparer en détail →</button>
+        <div class="note">Bloc préparé pour la future synastrie : deux thèmes, scores par domaine et rapport de compatibilité premium.</div>
+      </div>
+    </section>
+  </div>
+</div>
+</body>
+</html>

@@ -1,3 +1,4 @@
+import fs from "fs";
 import { calculateChart } from "celestine";
 
 function findPlanet(chart, name) {
@@ -50,19 +51,23 @@ function mapAngle(angle) {
   };
 }
 
-const birthData = {
-  year: 1990,
-  month: 1,
-  day: 1,
-  hour: 12,
-  minute: 0,
-  second: 0,
-  latitude: 48.8566,
-  longitude: 2.3522,
-  timezone: 1
-};
+const inputPath = "workspace/projects/ASTRO_PREMIUM/03_INPUTS/birth_input.json";
+const input = JSON.parse(fs.readFileSync(inputPath, "utf8"));
 
-const chart = calculateChart(birthData);
+const birthData = input.birth_data;
+const clientData = input.client || {};
+
+const chart = calculateChart({
+  year: birthData.year,
+  month: birthData.month,
+  day: birthData.day,
+  hour: birthData.hour,
+  minute: birthData.minute,
+  second: birthData.second || 0,
+  latitude: birthData.latitude,
+  longitude: birthData.longitude,
+  timezone: birthData.timezone
+});
 
 const birthDate =
   birthData.year +
@@ -85,21 +90,21 @@ const astroSchema = {
   },
 
   client: {
-    first_name: "Test",
-    email: "",
-    main_intention: "connaissance de soi",
-    language: "fr"
+    first_name: clientData.first_name || "Test",
+    email: clientData.email || "",
+    main_intention: clientData.main_intention || "connaissance de soi",
+    language: clientData.language || "fr"
   },
 
   birth_data: {
     birth_date: birthDate,
     birth_time: birthTime,
-    birth_city: "Paris",
-    birth_country: "France",
+    birth_city: birthData.birth_city || "",
+    birth_country: birthData.birth_country || "",
     timezone: birthData.timezone,
     latitude: birthData.latitude,
     longitude: birthData.longitude,
-    birth_time_quality: "exact"
+    birth_time_quality: birthData.birth_time_quality || "exact"
   },
 
   western_astrology: {
