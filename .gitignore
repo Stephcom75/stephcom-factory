@@ -35,4 +35,5 @@ tmp/
 temp/
 
 # Local exports
-workspace/exports/
+workspace/exports/workspace/archives/github_sources/app_builders/dyad/
+workspace/archives/github_sources/app_builders/
