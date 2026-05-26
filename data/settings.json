@@ -1,0 +1,6 @@
+{
+  "project_name": "Stephcom Factory",
+  "mistral_usage": "production_only",
+  "confirm_before_api_call": true,
+  "priority_projects": ["ASTRO_PREMIUM", "NATURO_VITALITE"]
+}
