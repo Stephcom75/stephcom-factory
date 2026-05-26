@@ -1,0 +1,232 @@
+{
+  "metadata": {
+    "project": "ASTRO_PREMIUM",
+    "version": "1.0",
+    "purpose": "Schéma des données structurées envoyées à l'agent Astro Premium pour générer un rapport PDF personnalisé.",
+    "important_rule": "Mistral ne calcule pas le thème astral. Il interprète uniquement les données déjà calculées."
+  },
+  "client": {
+    "first_name": "",
+    "email": "",
+    "main_intention": "",
+    "language": "fr"
+  },
+  "birth_data": {
+    "birth_date": "YYYY-MM-DD",
+    "birth_time": "HH:mm",
+    "birth_city": "",
+    "birth_country": "",
+    "timezone": "",
+    "latitude": null,
+    "longitude": null,
+    "birth_time_quality": "exact | approximate | unknown"
+  },
+  "western_astrology": {
+    "sun": {
+      "sign": "",
+      "degree": null,
+      "house": null
+    },
+    "moon": {
+      "sign": "",
+      "degree": null,
+      "house": null
+    },
+    "ascendant": {
+      "sign": "",
+      "degree": null
+    },
+    "mercury": {
+      "sign": "",
+      "degree": null,
+      "house": null
+    },
+    "venus": {
+      "sign": "",
+      "degree": null,
+      "house": null
+    },
+    "mars": {
+      "sign": "",
+      "degree": null,
+      "house": null
+    },
+    "jupiter": {
+      "sign": "",
+      "degree": null,
+      "house": null
+    },
+    "saturn": {
+      "sign": "",
+      "degree": null,
+      "house": null
+    },
+    "uranus": {
+      "sign": "",
+      "degree": null,
+      "house": null
+    },
+    "neptune": {
+      "sign": "",
+      "degree": null,
+      "house": null
+    },
+    "pluto": {
+      "sign": "",
+      "degree": null,
+      "house": null
+    },
+    "midheaven": {
+      "sign": "",
+      "degree": null
+    },
+    "houses": [
+      {
+        "house": 1,
+        "sign": "",
+        "degree": null
+      },
+      {
+        "house": 2,
+        "sign": "",
+        "degree": null
+      },
+      {
+        "house": 3,
+        "sign": "",
+        "degree": null
+      },
+      {
+        "house": 4,
+        "sign": "",
+        "degree": null
+      },
+      {
+        "house": 5,
+        "sign": "",
+        "degree": null
+      },
+      {
+        "house": 6,
+        "sign": "",
+        "degree": null
+      },
+      {
+        "house": 7,
+        "sign": "",
+        "degree": null
+      },
+      {
+        "house": 8,
+        "sign": "",
+        "degree": null
+      },
+      {
+        "house": 9,
+        "sign": "",
+        "degree": null
+      },
+      {
+        "house": 10,
+        "sign": "",
+        "degree": null
+      },
+      {
+        "house": 11,
+        "sign": "",
+        "degree": null
+      },
+      {
+        "house": 12,
+        "sign": "",
+        "degree": null
+      }
+    ],
+    "major_aspects": [
+      {
+        "planet_a": "",
+        "planet_b": "",
+        "aspect": "",
+        "orb": null,
+        "interpretation_hint": ""
+      }
+    ],
+    "dominants": {
+      "dominant_element": "",
+      "dominant_mode": "",
+      "dominant_planets": [],
+      "dominant_signs": []
+    }
+  },
+  "additional_systems": {
+    "chinese_astrology": {
+      "animal": "",
+      "element": "",
+      "polarity": "",
+      "interpretation_hint": ""
+    },
+    "numerology": {
+      "life_path_number": null,
+      "interpretation_hint": ""
+    }
+  },
+  "report_generation": {
+    "target_product": "theme_astral_premium_pdf",
+    "report_length": "12-18 pages",
+    "tone": [
+      "premium",
+      "clair",
+      "profond",
+      "non fataliste",
+      "accessible"
+    ],
+    "sections_required": [
+      "introduction_personnalisee",
+      "resume_essentiel",
+      "identite_profonde",
+      "monde_emotionnel",
+      "ascendant",
+      "amour_relations",
+      "energie_action",
+      "travail_talents_vocation",
+      "blocages_transformation",
+      "influences_complementaires",
+      "synthese_personnalisee",
+      "conclusion"
+    ]
+  },
+  "safety_rules": {
+    "forbidden": [
+      "diagnostic médical",
+      "diagnostic psychologique",
+      "prédiction absolue",
+      "promesse de réussite",
+      "promesse amoureuse",
+      "fatalisme",
+      "phrases anxiogènes",
+      "culpabilisation"
+    ],
+    "preferred_formulations": [
+      "peut indiquer",
+      "peut suggérer",
+      "met en lumière",
+      "invite à",
+      "semble montrer",
+      "peut être vécu comme",
+      "vous pourriez ressentir",
+      "un point de vigilance possible",
+      "une piste d’évolution"
+    ]
+  },
+  "quality_check": {
+    "must_verify": [
+      "Le prénom est correct.",
+      "Les données de naissance sont présentes.",
+      "Les positions astrologiques ne sont pas inventées.",
+      "Les sections obligatoires sont toutes générées.",
+      "Le ton est premium.",
+      "Le texte est clair.",
+      "Le texte est non fataliste.",
+      "Le rapport peut être vendu comme PDF premium."
+    ]
+  }
