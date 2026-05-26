@@ -6,6 +6,12 @@ const outputPath = "workspace/projects/ASTRO_PREMIUM/08_SORTIES/theme_astral_vis
 const astroData = JSON.parse(fs.readFileSync(inputPath, "utf8"));
 const western = astroData.western_astrology || {};
 
+const compatibilityPath = "workspace/projects/ASTRO_PREMIUM/08_SORTIES/compatibilite_personne_a_b.json";
+let compatibility = null;
+if (fs.existsSync(compatibilityPath)) {
+  compatibility = JSON.parse(fs.readFileSync(compatibilityPath, "utf8"));
+}
+
 const planets = [
   ["sun", "☉", "Soleil"],
   ["moon", "☽", "Lune"],
@@ -180,6 +186,19 @@ const client = astroData.client?.first_name || "Client";
 const birthDate = astroData.birth_data?.birth_date || "";
 const birthTime = astroData.birth_data?.birth_time || "";
 const birthCity = astroData.birth_data?.birth_city || "";
+
+const compatibilityScores = compatibility?.scores || {};
+const compatibilityPeople = compatibility?.people || {};
+
+const personAName = compatibilityPeople.person_a?.name || client;
+const personBName = compatibilityPeople.person_b?.name || "Personne B";
+
+const loveScore = compatibilityScores.love?.score ?? 82;
+const loveLevel = compatibilityScores.love?.level || "Tres forte";
+const friendshipScore = compatibilityScores.friendship?.score ?? 76;
+const friendshipLevel = compatibilityScores.friendship?.level || "Tres bonne";
+const workScore = compatibilityScores.work?.score ?? 68;
+const workLevel = compatibilityScores.work?.level || "Bonne";
 
 const html = `<!DOCTYPE html>
 <html lang="fr">
@@ -723,19 +742,19 @@ td:last-child {
         <div class="people">
           <div class="person">
             <div class="avatar">A</div>
-            <div><strong>Personne A</strong><small>${safe(client)}</small></div>
+            <div><strong>Personne A</strong><small>${safe(personAName)}</small></div>
           </div>
           <div class="link">∞</div>
           <div class="person">
             <div class="avatar">+</div>
-            <div><strong>Personne B</strong><small>À sélectionner</small></div>
+            <div><strong>Personne B</strong><small>${safe(personBName)}</small></div>
           </div>
         </div>
 
         <div class="scores">
-          <div class="score" style="--s:82;--c:#ff7f9f">♡ Amour<div class="ring"><b>82%</b></div><small>Excellente</small></div>
-          <div class="score" style="--s:76;--c:#b884ff">♢ Amitié<div class="ring"><b>76%</b></div><small>Très bonne</small></div>
-          <div class="score" style="--s:68;--c:#86b8ff">▣ Travail<div class="ring"><b>68%</b></div><small>Bonne</small></div>
+          <div class="score" style="--s:${loveScore};--c:#ff7f9f">♡ Amour<div class="ring"><b>${loveScore}%</b></div><small>${safe(loveLevel)}</small></div>
+          <div class="score" style="--s:${friendshipScore};--c:#b884ff">♢ Amitié<div class="ring"><b>${friendshipScore}%</b></div><small>${safe(friendshipLevel)}</small></div>
+          <div class="score" style="--s:${workScore};--c:#86b8ff">▣ Travail<div class="ring"><b>${workScore}%</b></div><small>${safe(workLevel)}</small></div>
         </div>
 
         <button class="compare">Comparer en détail →</button>
