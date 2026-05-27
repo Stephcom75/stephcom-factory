@@ -37,6 +37,20 @@ function cleanMarkdown(text) {
     .trim();
 }
 
+function removeOldPremiumSection(html) {
+  const start = "<!-- ASTRO_PREMIUM_REPORT_START -->";
+  const end = "<!-- ASTRO_PREMIUM_REPORT_END -->";
+
+  const startIndex = html.indexOf(start);
+  const endIndex = html.indexOf(end);
+
+  if (startIndex === -1 || endIndex === -1) {
+    return html;
+  }
+
+  return html.slice(0, startIndex) + html.slice(endIndex + end.length);
+}
+
 function scoreLevel(score) {
   const n = Number(score || 0);
 
@@ -53,58 +67,6 @@ function scoreTone(score) {
   if (n >= 75) return "high";
   if (n >= 60) return "medium";
   return "soft";
-}
-
-function removeOldPremiumSection(html) {
-  const start = "<!-- ASTRO_PREMIUM_REPORT_START -->";
-  const end = "<!-- ASTRO_PREMIUM_REPORT_END -->";
-
-  const startIndex = html.indexOf(start);
-  const endIndex = html.indexOf(end);
-
-  if (startIndex === -1 || endIndex === -1) {
-    return html;
-  }
-
-  return html.slice(0, startIndex) + html.slice(endIndex + end.length);
-}
-
-function paragraphHtml(lines) {
-  const blocks = [];
-  let listOpen = false;
-
-  function closeList() {
-    if (listOpen) {
-      blocks.push("</ul>");
-      listOpen = false;
-    }
-  }
-
-  for (const rawLine of lines) {
-    const line = rawLine.trim();
-
-    if (!line || line === "---") {
-      closeList();
-      continue;
-    }
-
-    if (line.startsWith("- ")) {
-      if (!listOpen) {
-        blocks.push("<ul>");
-        listOpen = true;
-      }
-
-      blocks.push("<li>" + escapeHtml(line.slice(2)) + "</li>");
-      continue;
-    }
-
-    closeList();
-    blocks.push("<p>" + escapeHtml(line) + "</p>");
-  }
-
-  closeList();
-
-  return blocks.join("\n");
 }
 
 function splitReportIntoSections(markdown) {
@@ -194,6 +156,87 @@ function shortNavLabel(title, index) {
   return "Section " + index;
 }
 
+function sectionIcon(title) {
+  const t = String(title).toLowerCase();
+
+  if (t.includes("amour")) return "♡";
+  if (t.includes("émotion") || t.includes("amitié") || t.includes("amicale")) return "◇";
+  if (t.includes("travail") || t.includes("projet")) return "□";
+  if (t.includes("forces")) return "✦";
+  if (t.includes("vigilance") || t.includes("tension")) return "!";
+  if (t.includes("conseil")) return "↗️";
+  if (t.includes("verdict")) return "✓";
+  if (t.includes("score")) return "%";
+
+  return "✧";
+}
+
+function linesToHtml(lines) {
+  const parts = [];
+  let listOpen = false;
+
+  function closeList() {
+    if (listOpen) {
+      parts.push("</ul>");
+      listOpen = false;
+    }
+  }
+
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+
+    if (!line || line === "---") {
+      closeList();
+      continue;
+    }
+
+    if (line.startsWith("### ")) {
+      closeList();
+      parts.push("<h3>" + escapeHtml(line.slice(4)) + "</h3>");
+      continue;
+    }
+
+    if (line.startsWith("- ")) {
+      if (!listOpen) {
+        parts.push("<ul>");
+        listOpen = true;
+      }
+
+      parts.push("<li>" + escapeHtml(line.slice(2)) + "</li>");
+      continue;
+    }
+
+    closeList();
+    parts.push("<p>" + escapeHtml(line) + "</p>");
+  }
+
+  closeList();
+
+  return parts.join("\n");
+}
+
+function getPreview(lines) {
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+
+    if (!line || line === "---") {
+      continue;
+    }
+
+    if (line.startsWith("- ")) {
+      return line.slice(2);
+    }
+
+    if (line.startsWith("### ")) {
+      continue;
+    }
+
+    return line;
+  }
+
+  return "Ouvrir cette section pour lire l’analyse détaillée.";
+}
+
 function buildScoreCard(label, score, icon) {
   const level = scoreLevel(score);
   const tone = scoreTone(score);
@@ -230,25 +273,41 @@ function buildPremiumAppSection(reportMarkdown, compatibility) {
 
   const navItems = [
     "<a href=\"#astro-app-overview\"><span>✦</span>Vue globale</a>",
-    "<a href=\"#astro-app-scores\"><span>◌</span>Scores</a>"
+    "<a href=\"#astro-app-scores\"><span>◌</span>Scores</a>",
+    "<a href=\"#astro-app-reading\"><span>▤</span>Lecture guidée</a>"
   ];
 
-  const sectionHtml = [];
+  const sectionCards = [];
 
   for (let i = 0; i < sections.length; i++) {
     const section = sections[i];
     const sectionIndex = i + 1;
     const id = slugify(section.title, sectionIndex);
     const navLabel = shortNavLabel(section.title, sectionIndex);
+    const preview = getPreview(section.lines);
+    const icon = sectionIcon(section.title);
+    const openAttribute = sectionIndex <= 2 ? " open" : "";
 
-    navItems.push("<a href=\"#" + id + "\"><span>0" + sectionIndex + "</span>" + escapeHtml(navLabel) + "</a>");
+    navItems.push(
+      "<a href=\"#" + id + "\"><span>" + icon + "</span>" + escapeHtml(navLabel) + "</a>"
+    );
 
-    sectionHtml.push([
-      "<article id=\"" + id + "\" class=\"astro-report-panel\">",
-      "<div class=\"astro-report-panel-number\">" + String(sectionIndex).padStart(2, "0") + "</div>",
-      "<h2>" + escapeHtml(section.title) + "</h2>",
-      paragraphHtml(section.lines),
-      "</article>"
+    sectionCards.push([
+      "<details id=\"" + id + "\" class=\"astro-report-card\"" + openAttribute + ">",
+      "<summary>",
+      "<div class=\"astro-report-summary-left\">",
+      "<span class=\"astro-report-icon\">" + icon + "</span>",
+      "<div>",
+      "<strong>" + escapeHtml(section.title) + "</strong>",
+      "<p>" + escapeHtml(preview) + "</p>",
+      "</div>",
+      "</div>",
+      "<span class=\"astro-open-indicator\">+</span>",
+      "</summary>",
+      "<div class=\"astro-report-body\">",
+      linesToHtml(section.lines),
+      "</div>",
+      "</details>"
     ].join("\n"));
   }
 
@@ -295,18 +354,29 @@ function buildPremiumAppSection(reportMarkdown, compatibility) {
     ".astro-score-level{font-size:14px;font-weight:900;color:#ffe8b0;margin-bottom:16px;}",
     ".astro-score-bar{height:9px;border-radius:999px;background:rgba(255,255,255,.10);overflow:hidden;}",
     ".astro-score-bar span{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#ff9dc7,#ffe8a8,#80eaff);}",
-    ".astro-report-panel{position:relative;border-radius:34px;padding:36px;background:linear-gradient(145deg,rgba(255,255,255,.078),rgba(255,255,255,.034));border:1px solid rgba(255,255,255,.115);box-shadow:0 24px 80px rgba(0,0,0,.24);scroll-margin-top:30px;}",
-    ".astro-report-panel-number{position:absolute;right:28px;top:22px;font-size:50px;line-height:1;font-weight:950;color:rgba(255,232,180,.10);}",
-    ".astro-report-panel h2{max-width:850px;margin:0 0 20px;font-size:clamp(26px,3vw,42px);line-height:1.05;letter-spacing:-.035em;color:#ffe8b0;}",
-    ".astro-report-panel h3{font-size:21px;margin:26px 0 10px;color:#f6d6ff;}",
-    ".astro-report-panel p{font-size:17px;line-height:1.78;color:rgba(255,255,255,.84);margin:0 0 18px;}",
-    ".astro-report-panel ul{display:grid;gap:12px;margin:18px 0 0;padding:0;list-style:none;}",
-    ".astro-report-panel li{font-size:16px;line-height:1.62;color:rgba(255,255,255,.84);padding:15px 17px;border-radius:18px;background:rgba(255,255,255,.065);border:1px solid rgba(255,255,255,.10);}",
+    ".astro-reading-header{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin:6px 0 -2px;}",
+    ".astro-reading-header h2{margin:0;font-size:clamp(30px,3.5vw,48px);letter-spacing:-.045em;line-height:1.02;color:#fff;}",
+    ".astro-reading-header p{max-width:560px;margin:0;color:rgba(255,255,255,.68);line-height:1.55;font-size:15px;}",
+    ".astro-report-grid{display:grid;gap:14px;}",
+    ".astro-report-card{border-radius:26px;background:linear-gradient(145deg,rgba(255,255,255,.078),rgba(255,255,255,.034));border:1px solid rgba(255,255,255,.115);box-shadow:0 20px 60px rgba(0,0,0,.20);overflow:hidden;scroll-margin-top:30px;}",
+    ".astro-report-card summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px 24px;}",
+    ".astro-report-card summary::-webkit-details-marker{display:none;}",
+    ".astro-report-summary-left{display:flex;align-items:center;gap:16px;min-width:0;}",
+    ".astro-report-icon{width:44px;height:44px;border-radius:16px;display:grid;place-items:center;background:rgba(255,232,180,.11);border:1px solid rgba(255,232,180,.22);color:#ffe8b0;font-weight:950;flex:0 0 auto;}",
+    ".astro-report-summary-left strong{display:block;color:#fff;font-size:19px;line-height:1.22;letter-spacing:-.02em;margin-bottom:5px;}",
+    ".astro-report-summary-left p{margin:0;color:rgba(255,255,255,.62);font-size:13px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}",
+    ".astro-open-indicator{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.11);color:#ffe8b0;font-size:20px;font-weight:900;flex:0 0 auto;}",
+    ".astro-report-card[open] .astro-open-indicator{transform:rotate(45deg);}",
+    ".astro-report-body{padding:0 24px 24px 84px;}",
+    ".astro-report-body h3{font-size:20px;margin:22px 0 10px;color:#f6d6ff;}",
+    ".astro-report-body p{font-size:16.5px;line-height:1.76;color:rgba(255,255,255,.84);margin:0 0 16px;}",
+    ".astro-report-body ul{display:grid;gap:10px;margin:14px 0 0;padding:0;list-style:none;}",
+    ".astro-report-body li{font-size:15.5px;line-height:1.58;color:rgba(255,255,255,.84);padding:13px 15px;border-radius:16px;background:rgba(255,255,255,.060);border:1px solid rgba(255,255,255,.09);}",
     ".astro-final-cta{position:relative;overflow:hidden;border-radius:36px;padding:38px;background:radial-gradient(circle at 10% 0%,rgba(255,232,180,.22),transparent 34%),linear-gradient(135deg,rgba(255,232,180,.18),rgba(180,115,255,.12));border:1px solid rgba(255,232,180,.28);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;box-shadow:0 28px 80px rgba(0,0,0,.28);}",
     ".astro-final-cta h2{margin:0 0 8px;font-size:34px;color:#fff;letter-spacing:-.035em;}",
     ".astro-final-cta p{margin:0;color:rgba(255,255,255,.74);font-size:16px;line-height:1.55;max-width:760px;}",
     ".astro-final-cta button{border:0;border-radius:19px;padding:17px 26px;background:linear-gradient(135deg,#fff1bd,#d6a13a);color:#18122e;font-weight:950;font-size:15px;cursor:pointer;box-shadow:0 18px 44px rgba(255,202,88,.24);}",
-    "@media(max-width:980px){.astro-app-shell{grid-template-columns:1fr}.astro-app-sidebar{position:relative;top:auto}.astro-app-nav{grid-template-columns:repeat(2,minmax(0,1fr))}.astro-score-grid{grid-template-columns:1fr}.astro-hero{padding:30px}.astro-report-panel{padding:26px}}",
+    "@media(max-width:980px){.astro-app-shell{grid-template-columns:1fr}.astro-app-sidebar{position:relative;top:auto}.astro-app-nav{grid-template-columns:repeat(2,minmax(0,1fr))}.astro-score-grid{grid-template-columns:1fr}.astro-hero{padding:30px}.astro-reading-header{display:block}.astro-reading-header p{margin-top:12px}.astro-report-body{padding:0 20px 22px 20px}}",
     "</style>",
     "<section id=\"rapport-premium\" class=\"astro-premium-app\">",
     "<div class=\"astro-app-shell\">",
@@ -341,7 +411,13 @@ function buildPremiumAppSection(reportMarkdown, compatibility) {
     buildScoreCard("Amitié", friendshipScore, "◇"),
     buildScoreCard("Travail", workScore, "□"),
     "</section>",
-    sectionHtml.join("\n"),
+    "<section id=\"astro-app-reading\" class=\"astro-reading-header\">",
+    "<h2>Lecture guidée</h2>",
+    "<p>Les sections ci-dessous sont volontairement compactes : l’utilisateur peut ouvrir uniquement ce qui l’intéresse, comme dans une vraie application premium.</p>",
+    "</section>",
+    "<section class=\"astro-report-grid\">",
+    sectionCards.join("\n"),
+    "</section>",
     "<section class=\"astro-final-cta\">",
     "<div>",
     "<h2>Recevoir l’analyse complète</h2>",
@@ -372,5 +448,5 @@ if (html.includes("</body>")) {
 
 fs.writeFileSync(htmlPath, html, "utf8");
 
-console.log("CTA premium renforce avec succes :");
+console.log("Interface premium allegee injectee avec succes :");
 console.log(htmlPath);
