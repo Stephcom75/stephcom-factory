@@ -324,7 +324,7 @@ function buildPremiumAppSection(reportMarkdown, compatibility) {
     ".astro-app-nav a span{width:26px;height:26px;border-radius:10px;display:grid;place-items:center;background:rgba(255,255,255,.07);color:#ffe8b0;font-size:11px;font-weight:950;flex:0 0 auto;}",
     ".astro-app-nav a:hover{transform:translateX(3px);background:rgba(255,232,180,.12);border-color:rgba(255,232,180,.28);color:#fff;}",
     ".astro-sidebar-cta{position:relative;overflow:hidden;margin-top:18px;padding:19px;border-radius:26px;background:radial-gradient(circle at 20% 0%,rgba(255,232,180,.25),transparent 42%),linear-gradient(145deg,rgba(255,232,180,.16),rgba(188,118,255,.11));border:1px solid rgba(255,232,180,.28);box-shadow:0 18px 46px rgba(0,0,0,.22);}",
-    ".astro-sidebar-cta:before{content:'Premium';position:absolute;right:-18px;top:12px;transform:rotate(28deg);font-size:11px;font-weight:950;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,232,180,.22);}",
+    ".astro-sidebar-cta:before{display:none;}",
     ".astro-sidebar-cta small{display:inline-flex;margin-bottom:10px;padding:6px 9px;border-radius:999px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.12);color:#ffe8b0;font-size:10px;font-weight:950;letter-spacing:.12em;text-transform:uppercase;}",
     ".astro-sidebar-cta strong{display:block;font-size:18px;line-height:1.12;color:#fff;margin-bottom:8px;letter-spacing:-.025em;}",
     ".astro-sidebar-cta span{display:block;font-size:12.5px;line-height:1.5;color:rgba(255,255,255,.72);margin-bottom:14px;}",
