@@ -1,9 +1,9 @@
 {
   "metadata": {
     "project": "ASTRO_PREMIUM",
-    "version": "1.0",
+    "version": "1.1",
     "type": "synastry_aspects",
-    "note": "Calcul des aspects exacts entre deux thèmes. Base technique du futur moteur de compatibilité premium."
+    "note": "Calcul des aspects exacts entre deux thèmes avec scoring calibré."
   },
   "people": {
     "person_a": {
@@ -16,23 +16,23 @@
   "scores": {
     "love": {
       "label": "Amour",
-      "score": 100,
-      "level": "Exceptionnelle"
+      "score": 66,
+      "level": "Bonne"
     },
     "friendship": {
       "label": "Amitié",
-      "score": 100,
-      "level": "Exceptionnelle"
+      "score": 64,
+      "level": "Équilibrée"
     },
     "work": {
       "label": "Travail",
-      "score": 93,
-      "level": "Exceptionnelle"
+      "score": 54,
+      "level": "Équilibrée"
     },
     "global": {
       "label": "Compatibilité globale",
-      "score": 98,
-      "level": "Exceptionnelle"
+      "score": 62,
+      "level": "Équilibrée"
     }
   },
   "counts": {
@@ -41,62 +41,6 @@
     "challenges": 7
   },
   "aspects": [
-    {
-      "person_a_body": "sun",
-      "person_a_label": "Soleil",
-      "person_a_sign": "Capricorn",
-      "person_a_sign_fr": "Capricorne",
-      "person_a_position": "10°46'12\" Capricorn",
-      "person_b_body": "mercury",
-      "person_b_label": "Mercure",
-      "person_b_sign": "Cancer",
-      "person_b_sign_fr": "Cancer",
-      "person_b_position": "11°33'17\" Cancer",
-      "aspect_type": "opposition",
-      "aspect_label_fr": "Opposition",
-      "aspect_symbol": "☍",
-      "exact_angle": 179.215,
-      "target_angle": 180,
-      "orb": 0.785,
-      "max_orb": 8,
-      "nature": "polarité",
-      "polarity": "challenge",
-      "category": "tension constructive",
-      "strength": 100,
-      "domain_impact": {
-        "love": -2,
-        "friendship": -1,
-        "work": -1
-      }
-    },
-    {
-      "person_a_body": "sun",
-      "person_a_label": "Soleil",
-      "person_a_sign": "Capricorn",
-      "person_a_sign_fr": "Capricorne",
-      "person_a_position": "10°46'12\" Capricorn",
-      "person_b_body": "jupiter",
-      "person_b_label": "Jupiter",
-      "person_b_sign": "Virgo",
-      "person_b_sign_fr": "Vierge",
-      "person_b_position": "7°37'29\" Virgo",
-      "aspect_type": "trine",
-      "aspect_label_fr": "Trigone",
-      "aspect_symbol": "△",
-      "exact_angle": 123.145,
-      "target_angle": 120,
-      "orb": 3.145,
-      "max_orb": 7,
-      "nature": "harmonique",
-      "polarity": "positive",
-      "category": "harmonique",
-      "strength": 100,
-      "domain_impact": {
-        "love": 4,
-        "friendship": 4,
-        "work": 18
-      }
-    },
     {
       "person_a_body": "moon",
       "person_a_label": "Lune",
@@ -115,70 +59,13 @@
       "target_angle": 60,
       "orb": 1.85,
       "max_orb": 5,
-      "nature": "harmonique",
       "polarity": "positive",
       "category": "harmonique",
-      "strength": 100,
+      "strength": 92,
       "domain_impact": {
-        "love": 22,
-        "friendship": 20,
-        "work": 3
-      }
-    },
-    {
-      "person_a_body": "moon",
-      "person_a_label": "Lune",
-      "person_a_sign": "Pisces",
-      "person_a_sign_fr": "Poissons",
-      "person_a_position": "2°41'38\" Pisces",
-      "person_b_body": "mars",
-      "person_b_label": "Mars",
-      "person_b_sign": "Taurus",
-      "person_b_sign_fr": "Taureau",
-      "person_b_position": "0°46'55\" Taurus",
-      "aspect_type": "sextile",
-      "aspect_label_fr": "Sextile",
-      "aspect_symbol": "⚹",
-      "exact_angle": 58.088,
-      "target_angle": 60,
-      "orb": 1.912,
-      "max_orb": 5,
-      "nature": "harmonique",
-      "polarity": "positive",
-      "category": "harmonique",
-      "strength": 100,
-      "domain_impact": {
-        "love": 4,
-        "friendship": 4,
-        "work": 3
-      }
-    },
-    {
-      "person_a_body": "moon",
-      "person_a_label": "Lune",
-      "person_a_sign": "Pisces",
-      "person_a_sign_fr": "Poissons",
-      "person_a_position": "2°41'38\" Pisces",
-      "person_b_body": "ascendant",
-      "person_b_label": "Ascendant",
-      "person_b_sign": "Scorpio",
-      "person_b_sign_fr": "Scorpion",
-      "person_b_position": "27°21'46\" Scorpio",
-      "aspect_type": "square",
-      "aspect_label_fr": "Carré",
-      "aspect_symbol": "□",
-      "exact_angle": 95.331,
-      "target_angle": 90,
-      "orb": 5.331,
-      "max_orb": 6,
-      "nature": "tension",
-      "polarity": "challenge",
-      "category": "tension constructive",
-      "strength": 100,
-      "domain_impact": {
-        "love": -2,
-        "friendship": -1,
-        "work": -1
+        "love": 10.8,
+        "friendship": 9.8,
+        "work": 1.3
       }
     },
     {
@@ -199,14 +86,13 @@
       "target_angle": 90,
       "orb": 5.438,
       "max_orb": 6,
-      "nature": "tension",
       "polarity": "challenge",
       "category": "magnétique",
-      "strength": 100,
+      "strength": 92,
       "domain_impact": {
-        "love": 3.2649999999999997,
-        "friendship": -1,
-        "work": -1
+        "love": 0.98,
+        "friendship": -2.2,
+        "work": -2
       }
     },
     {
@@ -227,42 +113,13 @@
       "target_angle": 90,
       "orb": 1.241,
       "max_orb": 6,
-      "nature": "tension",
       "polarity": "challenge",
       "category": "tension constructive",
-      "strength": 100,
+      "strength": 92,
       "domain_impact": {
-        "love": -2,
-        "friendship": -1,
-        "work": -1
-      }
-    },
-    {
-      "person_a_body": "ascendant",
-      "person_a_label": "Ascendant",
-      "person_a_sign": "Pisces",
-      "person_a_sign_fr": "Poissons",
-      "person_a_position": "26°04'53\" Pisces",
-      "person_b_body": "moon",
-      "person_b_label": "Lune",
-      "person_b_sign": "Capricorn",
-      "person_b_sign_fr": "Capricorne",
-      "person_b_position": "0°50'39\" Capricorn",
-      "aspect_type": "square",
-      "aspect_label_fr": "Carré",
-      "aspect_symbol": "□",
-      "exact_angle": 85.237,
-      "target_angle": 90,
-      "orb": 4.763,
-      "max_orb": 6,
-      "nature": "tension",
-      "polarity": "challenge",
-      "category": "tension constructive",
-      "strength": 100,
-      "domain_impact": {
-        "love": -2,
-        "friendship": -1,
-        "work": -1
+        "love": -2.8,
+        "friendship": -2.2,
+        "work": -2
       }
     },
     {
@@ -283,14 +140,13 @@
       "target_angle": 90,
       "orb": 0.681,
       "max_orb": 6,
-      "nature": "tension",
       "polarity": "challenge",
       "category": "magnétique",
-      "strength": 100,
+      "strength": 92,
       "domain_impact": {
-        "love": 3.2649999999999997,
-        "friendship": -1,
-        "work": -1
+        "love": 0.98,
+        "friendship": -2.2,
+        "work": -2
       }
     },
     {
@@ -311,14 +167,121 @@
       "target_angle": 120,
       "orb": 1.281,
       "max_orb": 7,
-      "nature": "harmonique",
       "polarity": "positive",
       "category": "harmonique",
-      "strength": 100,
+      "strength": 85,
       "domain_impact": {
-        "love": 4,
-        "friendship": 4,
-        "work": 3
+        "love": 1.8,
+        "friendship": 1.8,
+        "work": 1.3
+      }
+    },
+    {
+      "person_a_body": "sun",
+      "person_a_label": "Soleil",
+      "person_a_sign": "Capricorn",
+      "person_a_sign_fr": "Capricorne",
+      "person_a_position": "10°46'12\" Capricorn",
+      "person_b_body": "mercury",
+      "person_b_label": "Mercure",
+      "person_b_sign": "Cancer",
+      "person_b_sign_fr": "Cancer",
+      "person_b_position": "11°33'17\" Cancer",
+      "aspect_type": "opposition",
+      "aspect_label_fr": "Opposition",
+      "aspect_symbol": "☍",
+      "exact_angle": 179.215,
+      "target_angle": 180,
+      "orb": 0.785,
+      "max_orb": 8,
+      "polarity": "challenge",
+      "category": "tension constructive",
+      "strength": 81,
+      "domain_impact": {
+        "love": -2.8,
+        "friendship": -2.2,
+        "work": -2
+      }
+    },
+    {
+      "person_a_body": "moon",
+      "person_a_label": "Lune",
+      "person_a_sign": "Pisces",
+      "person_a_sign_fr": "Poissons",
+      "person_a_position": "2°41'38\" Pisces",
+      "person_b_body": "mars",
+      "person_b_label": "Mars",
+      "person_b_sign": "Taurus",
+      "person_b_sign_fr": "Taureau",
+      "person_b_position": "0°46'55\" Taurus",
+      "aspect_type": "sextile",
+      "aspect_label_fr": "Sextile",
+      "aspect_symbol": "⚹",
+      "exact_angle": 58.088,
+      "target_angle": 60,
+      "orb": 1.912,
+      "max_orb": 5,
+      "polarity": "positive",
+      "category": "harmonique",
+      "strength": 79,
+      "domain_impact": {
+        "love": 1.8,
+        "friendship": 1.8,
+        "work": 1.3
+      }
+    },
+    {
+      "person_a_body": "ascendant",
+      "person_a_label": "Ascendant",
+      "person_a_sign": "Pisces",
+      "person_a_sign_fr": "Poissons",
+      "person_a_position": "26°04'53\" Pisces",
+      "person_b_body": "moon",
+      "person_b_label": "Lune",
+      "person_b_sign": "Capricorn",
+      "person_b_sign_fr": "Capricorne",
+      "person_b_position": "0°50'39\" Capricorn",
+      "aspect_type": "square",
+      "aspect_label_fr": "Carré",
+      "aspect_symbol": "□",
+      "exact_angle": 85.237,
+      "target_angle": 90,
+      "orb": 4.763,
+      "max_orb": 6,
+      "polarity": "challenge",
+      "category": "tension constructive",
+      "strength": 78,
+      "domain_impact": {
+        "love": -2.8,
+        "friendship": -2.2,
+        "work": -2
+      }
+    },
+    {
+      "person_a_body": "moon",
+      "person_a_label": "Lune",
+      "person_a_sign": "Pisces",
+      "person_a_sign_fr": "Poissons",
+      "person_a_position": "2°41'38\" Pisces",
+      "person_b_body": "ascendant",
+      "person_b_label": "Ascendant",
+      "person_b_sign": "Scorpio",
+      "person_b_sign_fr": "Scorpion",
+      "person_b_position": "27°21'46\" Scorpio",
+      "aspect_type": "square",
+      "aspect_label_fr": "Carré",
+      "aspect_symbol": "□",
+      "exact_angle": 95.331,
+      "target_angle": 90,
+      "orb": 5.331,
+      "max_orb": 6,
+      "polarity": "challenge",
+      "category": "tension constructive",
+      "strength": 75,
+      "domain_impact": {
+        "love": -2.8,
+        "friendship": -2.2,
+        "work": -2
       }
     },
     {
@@ -339,13 +302,12 @@
       "target_angle": 0,
       "orb": 2.507,
       "max_orb": 8,
-      "nature": "fusion",
       "polarity": "intense",
       "category": "intense",
-      "strength": 99,
+      "strength": 75,
       "domain_impact": {
-        "love": 0,
-        "friendship": 0,
+        "love": 0.8,
+        "friendship": 0.4,
         "work": 0
       }
     },
@@ -367,14 +329,13 @@
       "target_angle": 60,
       "orb": 1.706,
       "max_orb": 5,
-      "nature": "harmonique",
       "polarity": "positive",
       "category": "harmonique",
-      "strength": 98,
+      "strength": 74,
       "domain_impact": {
-        "love": 4,
-        "friendship": 4,
-        "work": 3
+        "love": 1.8,
+        "friendship": 1.8,
+        "work": 1.3
       }
     },
     {
@@ -395,98 +356,13 @@
       "target_angle": 0,
       "orb": 1.231,
       "max_orb": 8,
-      "nature": "fusion",
       "polarity": "intense",
       "category": "intense",
-      "strength": 98,
+      "strength": 74,
       "domain_impact": {
-        "love": 0,
-        "friendship": 0,
+        "love": 0.8,
+        "friendship": 0.4,
         "work": 0
-      }
-    },
-    {
-      "person_a_body": "neptune",
-      "person_a_label": "Neptune",
-      "person_a_sign": "Capricorn",
-      "person_a_sign_fr": "Capricorne",
-      "person_a_position": "12°02'04\" Capricorn",
-      "person_b_body": "mercury",
-      "person_b_label": "Mercure",
-      "person_b_sign": "Cancer",
-      "person_b_sign_fr": "Cancer",
-      "person_b_position": "11°33'17\" Cancer",
-      "aspect_type": "opposition",
-      "aspect_label_fr": "Opposition",
-      "aspect_symbol": "☍",
-      "exact_angle": 179.52,
-      "target_angle": 180,
-      "orb": 0.48,
-      "max_orb": 8,
-      "nature": "polarité",
-      "polarity": "challenge",
-      "category": "tension constructive",
-      "strength": 98,
-      "domain_impact": {
-        "love": -2,
-        "friendship": -1,
-        "work": -1
-      }
-    },
-    {
-      "person_a_body": "midheaven",
-      "person_a_label": "Milieu du Ciel",
-      "person_a_sign": "Sagittarius",
-      "person_a_sign_fr": "Sagittaire",
-      "person_a_position": "28°20'13\" Sagittarius",
-      "person_b_body": "mars",
-      "person_b_label": "Mars",
-      "person_b_sign": "Taurus",
-      "person_b_sign_fr": "Taureau",
-      "person_b_position": "0°46'55\" Taurus",
-      "aspect_type": "trine",
-      "aspect_label_fr": "Trigone",
-      "aspect_symbol": "△",
-      "exact_angle": 122.445,
-      "target_angle": 120,
-      "orb": 2.445,
-      "max_orb": 7,
-      "nature": "harmonique",
-      "polarity": "positive",
-      "category": "harmonique",
-      "strength": 98,
-      "domain_impact": {
-        "love": 4,
-        "friendship": 4,
-        "work": 3
-      }
-    },
-    {
-      "person_a_body": "pluto",
-      "person_a_label": "Pluton",
-      "person_a_sign": "Scorpio",
-      "person_a_sign_fr": "Scorpion",
-      "person_a_position": "17°13'30\" Scorpio",
-      "person_b_body": "saturn",
-      "person_b_label": "Saturne",
-      "person_b_sign": "Aquarius",
-      "person_b_sign_fr": "Verseau",
-      "person_b_position": "18°12'41\" Aquarius",
-      "aspect_type": "square",
-      "aspect_label_fr": "Carré",
-      "aspect_symbol": "□",
-      "exact_angle": 90.986,
-      "target_angle": 90,
-      "orb": 0.986,
-      "max_orb": 6,
-      "nature": "tension",
-      "polarity": "challenge",
-      "category": "tension constructive",
-      "strength": 97,
-      "domain_impact": {
-        "love": -2,
-        "friendship": -1,
-        "work": -1
       }
     },
     {
@@ -507,14 +383,40 @@
       "target_angle": 180,
       "orb": 2.936,
       "max_orb": 8,
-      "nature": "polarité",
       "polarity": "challenge",
       "category": "tension constructive",
-      "strength": 97,
+      "strength": 74,
       "domain_impact": {
-        "love": -2,
-        "friendship": -1,
-        "work": -1
+        "love": -2.8,
+        "friendship": -2.2,
+        "work": -2
+      }
+    },
+    {
+      "person_a_body": "midheaven",
+      "person_a_label": "Milieu du Ciel",
+      "person_a_sign": "Sagittarius",
+      "person_a_sign_fr": "Sagittaire",
+      "person_a_position": "28°20'13\" Sagittarius",
+      "person_b_body": "mars",
+      "person_b_label": "Mars",
+      "person_b_sign": "Taurus",
+      "person_b_sign_fr": "Taureau",
+      "person_b_position": "0°46'55\" Taurus",
+      "aspect_type": "trine",
+      "aspect_label_fr": "Trigone",
+      "aspect_symbol": "△",
+      "exact_angle": 122.445,
+      "target_angle": 120,
+      "orb": 2.445,
+      "max_orb": 7,
+      "polarity": "positive",
+      "category": "harmonique",
+      "strength": 74,
+      "domain_impact": {
+        "love": 1.8,
+        "friendship": 1.8,
+        "work": 1.3
       }
     },
     {
@@ -535,42 +437,67 @@
       "target_angle": 90,
       "orb": 2.346,
       "max_orb": 6,
-      "nature": "tension",
       "polarity": "challenge",
       "category": "tension constructive",
-      "strength": 96,
+      "strength": 73,
       "domain_impact": {
-        "love": -2,
-        "friendship": -1,
-        "work": -1
+        "love": -2.8,
+        "friendship": -2.2,
+        "work": -2
       }
     },
     {
-      "person_a_body": "jupiter",
-      "person_a_label": "Jupiter",
-      "person_a_sign": "Cancer",
-      "person_a_sign_fr": "Cancer",
-      "person_a_position": "5°08'19\" Cancer",
-      "person_b_body": "moon",
-      "person_b_label": "Lune",
-      "person_b_sign": "Capricorn",
-      "person_b_sign_fr": "Capricorne",
-      "person_b_position": "0°50'39\" Capricorn",
+      "person_a_body": "neptune",
+      "person_a_label": "Neptune",
+      "person_a_sign": "Capricorn",
+      "person_a_sign_fr": "Capricorne",
+      "person_a_position": "12°02'04\" Capricorn",
+      "person_b_body": "mercury",
+      "person_b_label": "Mercure",
+      "person_b_sign": "Cancer",
+      "person_b_sign_fr": "Cancer",
+      "person_b_position": "11°33'17\" Cancer",
       "aspect_type": "opposition",
       "aspect_label_fr": "Opposition",
       "aspect_symbol": "☍",
-      "exact_angle": 175.706,
+      "exact_angle": 179.52,
       "target_angle": 180,
-      "orb": 4.294,
+      "orb": 0.48,
       "max_orb": 8,
-      "nature": "polarité",
       "polarity": "challenge",
       "category": "tension constructive",
-      "strength": 96,
+      "strength": 73,
       "domain_impact": {
-        "love": -2,
-        "friendship": 3.6800000000000006,
-        "work": -1
+        "love": -2.8,
+        "friendship": -2.2,
+        "work": -2
+      }
+    },
+    {
+      "person_a_body": "pluto",
+      "person_a_label": "Pluton",
+      "person_a_sign": "Scorpio",
+      "person_a_sign_fr": "Scorpion",
+      "person_a_position": "17°13'30\" Scorpio",
+      "person_b_body": "saturn",
+      "person_b_label": "Saturne",
+      "person_b_sign": "Aquarius",
+      "person_b_sign_fr": "Verseau",
+      "person_b_position": "18°12'41\" Aquarius",
+      "aspect_type": "square",
+      "aspect_label_fr": "Carré",
+      "aspect_symbol": "□",
+      "exact_angle": 90.986,
+      "target_angle": 90,
+      "orb": 0.986,
+      "max_orb": 6,
+      "polarity": "challenge",
+      "category": "tension constructive",
+      "strength": 73,
+      "domain_impact": {
+        "love": -2.8,
+        "friendship": -2.2,
+        "work": -2
       }
     },
     {
@@ -591,14 +518,40 @@
       "target_angle": 180,
       "orb": 3.497,
       "max_orb": 8,
-      "nature": "polarité",
       "polarity": "challenge",
       "category": "tension constructive",
-      "strength": 95,
+      "strength": 72,
       "domain_impact": {
-        "love": -2,
-        "friendship": -1,
-        "work": -1
+        "love": -2.8,
+        "friendship": -2.2,
+        "work": -2
+      }
+    },
+    {
+      "person_a_body": "sun",
+      "person_a_label": "Soleil",
+      "person_a_sign": "Capricorn",
+      "person_a_sign_fr": "Capricorne",
+      "person_a_position": "10°46'12\" Capricorn",
+      "person_b_body": "jupiter",
+      "person_b_label": "Jupiter",
+      "person_b_sign": "Virgo",
+      "person_b_sign_fr": "Vierge",
+      "person_b_position": "7°37'29\" Virgo",
+      "aspect_type": "trine",
+      "aspect_label_fr": "Trigone",
+      "aspect_symbol": "△",
+      "exact_angle": 123.145,
+      "target_angle": 120,
+      "orb": 3.145,
+      "max_orb": 7,
+      "polarity": "positive",
+      "category": "harmonique",
+      "strength": 71,
+      "domain_impact": {
+        "love": 1.8,
+        "friendship": 1.8,
+        "work": 1.3
       }
     },
     {
@@ -619,14 +572,13 @@
       "target_angle": 120,
       "orb": 2.489,
       "max_orb": 7,
-      "nature": "harmonique",
       "polarity": "positive",
       "category": "harmonique",
-      "strength": 94,
+      "strength": 71,
       "domain_impact": {
-        "love": 4,
-        "friendship": 4,
-        "work": 3
+        "love": 1.8,
+        "friendship": 1.8,
+        "work": 1.3
       }
     },
     {
@@ -647,14 +599,13 @@
       "target_angle": 60,
       "orb": 0.343,
       "max_orb": 5,
-      "nature": "harmonique",
       "polarity": "positive",
       "category": "harmonique",
-      "strength": 93,
+      "strength": 70,
       "domain_impact": {
-        "love": 4,
-        "friendship": 4,
-        "work": 3
+        "love": 1.8,
+        "friendship": 1.8,
+        "work": 1.3
       }
     },
     {
@@ -675,42 +626,40 @@
       "target_angle": 60,
       "orb": 0.915,
       "max_orb": 5,
-      "nature": "harmonique",
       "polarity": "positive",
       "category": "harmonique",
-      "strength": 93,
+      "strength": 70,
       "domain_impact": {
-        "love": 4,
-        "friendship": 4,
-        "work": 3
+        "love": 1.8,
+        "friendship": 1.8,
+        "work": 1.3
       }
     },
     {
-      "person_a_body": "moon",
-      "person_a_label": "Lune",
-      "person_a_sign": "Pisces",
-      "person_a_sign_fr": "Poissons",
-      "person_a_position": "2°41'38\" Pisces",
-      "person_b_body": "jupiter",
-      "person_b_label": "Jupiter",
-      "person_b_sign": "Virgo",
-      "person_b_sign_fr": "Vierge",
-      "person_b_position": "7°37'29\" Virgo",
+      "person_a_body": "jupiter",
+      "person_a_label": "Jupiter",
+      "person_a_sign": "Cancer",
+      "person_a_sign_fr": "Cancer",
+      "person_a_position": "5°08'19\" Cancer",
+      "person_b_body": "moon",
+      "person_b_label": "Lune",
+      "person_b_sign": "Capricorn",
+      "person_b_sign_fr": "Capricorne",
+      "person_b_position": "0°50'39\" Capricorn",
       "aspect_type": "opposition",
       "aspect_label_fr": "Opposition",
       "aspect_symbol": "☍",
-      "exact_angle": 175.069,
+      "exact_angle": 175.706,
       "target_angle": 180,
-      "orb": 4.931,
+      "orb": 4.294,
       "max_orb": 8,
-      "nature": "polarité",
       "polarity": "challenge",
       "category": "tension constructive",
-      "strength": 91,
+      "strength": 69,
       "domain_impact": {
-        "love": -2,
-        "friendship": 3.6800000000000006,
-        "work": -1
+        "love": -2.8,
+        "friendship": -2.2,
+        "work": -2
       }
     },
     {
@@ -731,13 +680,12 @@
       "target_angle": 0,
       "orb": 2.529,
       "max_orb": 8,
-      "nature": "fusion",
       "polarity": "intense",
       "category": "intense",
-      "strength": 91,
+      "strength": 69,
       "domain_impact": {
-        "love": 0,
-        "friendship": 0,
+        "love": 0.8,
+        "friendship": 0.4,
         "work": 0
       }
     },
@@ -759,14 +707,40 @@
       "target_angle": 120,
       "orb": 1.844,
       "max_orb": 7,
-      "nature": "harmonique",
       "polarity": "positive",
       "category": "harmonique",
-      "strength": 89,
+      "strength": 68,
       "domain_impact": {
-        "love": 4,
-        "friendship": 4,
-        "work": 3
+        "love": 1.8,
+        "friendship": 1.8,
+        "work": 1.3
+      }
+    },
+    {
+      "person_a_body": "moon",
+      "person_a_label": "Lune",
+      "person_a_sign": "Pisces",
+      "person_a_sign_fr": "Poissons",
+      "person_a_position": "2°41'38\" Pisces",
+      "person_b_body": "jupiter",
+      "person_b_label": "Jupiter",
+      "person_b_sign": "Virgo",
+      "person_b_sign_fr": "Vierge",
+      "person_b_position": "7°37'29\" Virgo",
+      "aspect_type": "opposition",
+      "aspect_label_fr": "Opposition",
+      "aspect_symbol": "☍",
+      "exact_angle": 175.069,
+      "target_angle": 180,
+      "orb": 4.931,
+      "max_orb": 8,
+      "polarity": "challenge",
+      "category": "tension constructive",
+      "strength": 67,
+      "domain_impact": {
+        "love": -2.8,
+        "friendship": -2.2,
+        "work": -2
       }
     },
     {
@@ -787,14 +761,13 @@
       "target_angle": 180,
       "orb": 4.096,
       "max_orb": 8,
-      "nature": "polarité",
       "polarity": "challenge",
       "category": "tension constructive",
-      "strength": 88,
+      "strength": 67,
       "domain_impact": {
-        "love": -2,
-        "friendship": -1,
-        "work": -1
+        "love": -2.8,
+        "friendship": -2.2,
+        "work": -2
       }
     },
     {
@@ -815,14 +788,13 @@
       "target_angle": 60,
       "orb": 0.954,
       "max_orb": 5,
-      "nature": "harmonique",
       "polarity": "positive",
       "category": "harmonique",
-      "strength": 88,
+      "strength": 67,
       "domain_impact": {
-        "love": 4,
-        "friendship": 4,
-        "work": 3
+        "love": 1.8,
+        "friendship": 1.8,
+        "work": 1.3
       }
     },
     {
@@ -843,14 +815,13 @@
       "target_angle": 60,
       "orb": 2.486,
       "max_orb": 5,
-      "nature": "harmonique",
       "polarity": "positive",
       "category": "harmonique",
-      "strength": 84,
+      "strength": 64,
       "domain_impact": {
-        "love": 4,
-        "friendship": 4,
-        "work": 3
+        "love": 1.8,
+        "friendship": 1.8,
+        "work": 1.3
       }
     },
     {
@@ -871,13 +842,12 @@
       "target_angle": 0,
       "orb": 4.936,
       "max_orb": 8,
-      "nature": "fusion",
       "polarity": "intense",
       "category": "intense",
-      "strength": 83,
+      "strength": 64,
       "domain_impact": {
-        "love": 0,
-        "friendship": 0,
+        "love": 0.8,
+        "friendship": 0.4,
         "work": 0
       }
     },
@@ -899,14 +869,40 @@
       "target_angle": 120,
       "orb": 4.998,
       "max_orb": 7,
-      "nature": "harmonique",
       "polarity": "positive",
       "category": "harmonique",
-      "strength": 79,
+      "strength": 61,
       "domain_impact": {
-        "love": 4,
-        "friendship": 4,
-        "work": 3
+        "love": 1.8,
+        "friendship": 1.8,
+        "work": 1.3
+      }
+    },
+    {
+      "person_a_body": "sun",
+      "person_a_label": "Soleil",
+      "person_a_sign": "Capricorn",
+      "person_a_sign_fr": "Capricorne",
+      "person_a_position": "10°46'12\" Capricorn",
+      "person_b_body": "uranus",
+      "person_b_label": "Uranus",
+      "person_b_sign": "Capricorn",
+      "person_b_sign_fr": "Capricorne",
+      "person_b_position": "16°52'55\" Capricorn",
+      "aspect_type": "conjunction",
+      "aspect_label_fr": "Conjonction",
+      "aspect_symbol": "☌",
+      "exact_angle": 6.112,
+      "target_angle": 0,
+      "orb": 6.112,
+      "max_orb": 8,
+      "polarity": "intense",
+      "category": "intense",
+      "strength": 60,
+      "domain_impact": {
+        "love": 0.8,
+        "friendship": 0.4,
+        "work": 0
       }
     },
     {
@@ -927,14 +923,40 @@
       "target_angle": 90,
       "orb": 5.126,
       "max_orb": 6,
-      "nature": "tension",
       "polarity": "challenge",
       "category": "tension constructive",
-      "strength": 78,
+      "strength": 60,
       "domain_impact": {
-        "love": -2,
-        "friendship": -1,
-        "work": -1
+        "love": -2.8,
+        "friendship": -2.2,
+        "work": -2
+      }
+    },
+    {
+      "person_a_body": "jupiter",
+      "person_a_label": "Jupiter",
+      "person_a_sign": "Cancer",
+      "person_a_sign_fr": "Cancer",
+      "person_a_position": "5°08'19\" Cancer",
+      "person_b_body": "mars",
+      "person_b_label": "Mars",
+      "person_b_sign": "Taurus",
+      "person_b_sign_fr": "Taureau",
+      "person_b_position": "0°46'55\" Taurus",
+      "aspect_type": "sextile",
+      "aspect_label_fr": "Sextile",
+      "aspect_symbol": "⚹",
+      "exact_angle": 64.357,
+      "target_angle": 60,
+      "orb": 4.357,
+      "max_orb": 5,
+      "polarity": "positive",
+      "category": "harmonique",
+      "strength": 60,
+      "domain_impact": {
+        "love": 1.8,
+        "friendship": 1.8,
+        "work": 1.3
       }
     },
     {
@@ -955,13 +977,12 @@
       "target_angle": 0,
       "orb": 3.546,
       "max_orb": 8,
-      "nature": "fusion",
       "polarity": "intense",
       "category": "intense",
-      "strength": 78,
+      "strength": 60,
       "domain_impact": {
-        "love": 0,
-        "friendship": 0,
+        "love": 0.8,
+        "friendship": 0.4,
         "work": 0
       }
     },
@@ -983,70 +1004,13 @@
       "target_angle": 120,
       "orb": 5.311,
       "max_orb": 7,
-      "nature": "harmonique",
       "polarity": "positive",
       "category": "harmonique",
-      "strength": 78,
+      "strength": 60,
       "domain_impact": {
-        "love": 4,
-        "friendship": 4,
-        "work": 3
-      }
-    },
-    {
-      "person_a_body": "sun",
-      "person_a_label": "Soleil",
-      "person_a_sign": "Capricorn",
-      "person_a_sign_fr": "Capricorne",
-      "person_a_position": "10°46'12\" Capricorn",
-      "person_b_body": "uranus",
-      "person_b_label": "Uranus",
-      "person_b_sign": "Capricorn",
-      "person_b_sign_fr": "Capricorne",
-      "person_b_position": "16°52'55\" Capricorn",
-      "aspect_type": "conjunction",
-      "aspect_label_fr": "Conjonction",
-      "aspect_symbol": "☌",
-      "exact_angle": 6.112,
-      "target_angle": 0,
-      "orb": 6.112,
-      "max_orb": 8,
-      "nature": "fusion",
-      "polarity": "intense",
-      "category": "intense",
-      "strength": 77,
-      "domain_impact": {
-        "love": 0,
-        "friendship": 0,
-        "work": 0
-      }
-    },
-    {
-      "person_a_body": "jupiter",
-      "person_a_label": "Jupiter",
-      "person_a_sign": "Cancer",
-      "person_a_sign_fr": "Cancer",
-      "person_a_position": "5°08'19\" Cancer",
-      "person_b_body": "mars",
-      "person_b_label": "Mars",
-      "person_b_sign": "Taurus",
-      "person_b_sign_fr": "Taureau",
-      "person_b_position": "0°46'55\" Taurus",
-      "aspect_type": "sextile",
-      "aspect_label_fr": "Sextile",
-      "aspect_symbol": "⚹",
-      "exact_angle": 64.357,
-      "target_angle": 60,
-      "orb": 4.357,
-      "max_orb": 5,
-      "nature": "harmonique",
-      "polarity": "positive",
-      "category": "harmonique",
-      "strength": 77,
-      "domain_impact": {
-        "love": 4,
-        "friendship": 4,
-        "work": 3
+        "love": 1.8,
+        "friendship": 1.8,
+        "work": 1.3
       }
     },
     {
@@ -1067,14 +1031,13 @@
       "target_angle": 120,
       "orb": 4.41,
       "max_orb": 7,
-      "nature": "harmonique",
       "polarity": "positive",
       "category": "harmonique",
-      "strength": 75,
+      "strength": 57,
       "domain_impact": {
-        "love": 4,
-        "friendship": 4,
-        "work": 3
+        "love": 1.8,
+        "friendship": 1.8,
+        "work": 1.3
       }
     },
     {
@@ -1095,41 +1058,12 @@
       "target_angle": 0,
       "orb": 6.416,
       "max_orb": 8,
-      "nature": "fusion",
       "polarity": "intense",
       "category": "intense",
-      "strength": 72,
+      "strength": 56,
       "domain_impact": {
-        "love": 0,
-        "friendship": 0,
-        "work": 0
-      }
-    },
-    {
-      "person_a_body": "neptune",
-      "person_a_label": "Neptune",
-      "person_a_sign": "Capricorn",
-      "person_a_sign_fr": "Capricorne",
-      "person_a_position": "12°02'04\" Capricorn",
-      "person_b_body": "uranus",
-      "person_b_label": "Uranus",
-      "person_b_sign": "Capricorn",
-      "person_b_sign_fr": "Capricorne",
-      "person_b_position": "16°52'55\" Capricorn",
-      "aspect_type": "conjunction",
-      "aspect_label_fr": "Conjonction",
-      "aspect_symbol": "☌",
-      "exact_angle": 4.847,
-      "target_angle": 0,
-      "orb": 4.847,
-      "max_orb": 8,
-      "nature": "fusion",
-      "polarity": "intense",
-      "category": "intense",
-      "strength": 72,
-      "domain_impact": {
-        "love": 0,
-        "friendship": 0,
+        "love": 0.8,
+        "friendship": 0.4,
         "work": 0
       }
     },
@@ -1151,14 +1085,13 @@
       "target_angle": 180,
       "orb": 7.941,
       "max_orb": 8,
-      "nature": "polarité",
       "polarity": "challenge",
       "category": "tension constructive",
-      "strength": 72,
+      "strength": 56,
       "domain_impact": {
-        "love": -2,
-        "friendship": -1,
-        "work": -1
+        "love": -2.8,
+        "friendship": -2.2,
+        "work": -2
       }
     },
     {
@@ -1179,13 +1112,12 @@
       "target_angle": 0,
       "orb": 7.409,
       "max_orb": 8,
-      "nature": "fusion",
       "polarity": "intense",
       "category": "intense",
-      "strength": 71,
+      "strength": 55,
       "domain_impact": {
-        "love": 0,
-        "friendship": 0,
+        "love": 0.8,
+        "friendship": 0.4,
         "work": 0
       }
     },
@@ -1207,14 +1139,40 @@
       "target_angle": 180,
       "orb": 5.774,
       "max_orb": 8,
-      "nature": "polarité",
       "polarity": "challenge",
       "category": "tension constructive",
-      "strength": 71,
+      "strength": 55,
       "domain_impact": {
-        "love": -2,
-        "friendship": -1,
-        "work": -1
+        "love": -2.8,
+        "friendship": -2.2,
+        "work": -2
+      }
+    },
+    {
+      "person_a_body": "neptune",
+      "person_a_label": "Neptune",
+      "person_a_sign": "Capricorn",
+      "person_a_sign_fr": "Capricorne",
+      "person_a_position": "12°02'04\" Capricorn",
+      "person_b_body": "uranus",
+      "person_b_label": "Uranus",
+      "person_b_sign": "Capricorn",
+      "person_b_sign_fr": "Capricorne",
+      "person_b_position": "16°52'55\" Capricorn",
+      "aspect_type": "conjunction",
+      "aspect_label_fr": "Conjonction",
+      "aspect_symbol": "☌",
+      "exact_angle": 4.847,
+      "target_angle": 0,
+      "orb": 4.847,
+      "max_orb": 8,
+      "polarity": "intense",
+      "category": "intense",
+      "strength": 55,
+      "domain_impact": {
+        "love": 0.8,
+        "friendship": 0.4,
+        "work": 0
       }
     },
     {
@@ -1235,42 +1193,13 @@
       "target_angle": 120,
       "orb": 5.67,
       "max_orb": 7,
-      "nature": "harmonique",
       "polarity": "positive",
       "category": "harmonique",
-      "strength": 68,
+      "strength": 52,
       "domain_impact": {
-        "love": 4,
-        "friendship": 4,
-        "work": 3
-      }
-    },
-    {
-      "person_a_body": "neptune",
-      "person_a_label": "Neptune",
-      "person_a_sign": "Capricorn",
-      "person_a_sign_fr": "Capricorne",
-      "person_a_position": "12°02'04\" Capricorn",
-      "person_b_body": "neptune",
-      "person_b_label": "Neptune",
-      "person_b_sign": "Capricorn",
-      "person_b_sign_fr": "Capricorne",
-      "person_b_position": "18°10'46\" Capricorn",
-      "aspect_type": "conjunction",
-      "aspect_label_fr": "Conjonction",
-      "aspect_symbol": "☌",
-      "exact_angle": 6.145,
-      "target_angle": 0,
-      "orb": 6.145,
-      "max_orb": 8,
-      "nature": "fusion",
-      "polarity": "intense",
-      "category": "intense",
-      "strength": 65,
-      "domain_impact": {
-        "love": 0,
-        "friendship": 0,
-        "work": 0
+        "love": 1.8,
+        "friendship": 1.8,
+        "work": 1.3
       }
     },
     {
@@ -1291,14 +1220,40 @@
       "target_angle": 120,
       "orb": 6.106,
       "max_orb": 7,
-      "nature": "harmonique",
       "polarity": "positive",
       "category": "harmonique",
-      "strength": 65,
+      "strength": 51,
       "domain_impact": {
-        "love": 4,
-        "friendship": 4,
-        "work": 3
+        "love": 1.8,
+        "friendship": 1.8,
+        "work": 1.3
+      }
+    },
+    {
+      "person_a_body": "neptune",
+      "person_a_label": "Neptune",
+      "person_a_sign": "Capricorn",
+      "person_a_sign_fr": "Capricorne",
+      "person_a_position": "12°02'04\" Capricorn",
+      "person_b_body": "neptune",
+      "person_b_label": "Neptune",
+      "person_b_sign": "Capricorn",
+      "person_b_sign_fr": "Capricorne",
+      "person_b_position": "18°10'46\" Capricorn",
+      "aspect_type": "conjunction",
+      "aspect_label_fr": "Conjonction",
+      "aspect_symbol": "☌",
+      "exact_angle": 6.145,
+      "target_angle": 0,
+      "orb": 6.145,
+      "max_orb": 8,
+      "polarity": "intense",
+      "category": "intense",
+      "strength": 50,
+      "domain_impact": {
+        "love": 0.8,
+        "friendship": 0.4,
+        "work": 0
       }
     },
     {
@@ -1319,13 +1274,12 @@
       "target_angle": 0,
       "orb": 7.477,
       "max_orb": 8,
-      "nature": "fusion",
       "polarity": "intense",
       "category": "intense",
-      "strength": 63,
+      "strength": 49,
       "domain_impact": {
-        "love": 0,
-        "friendship": 0,
+        "love": 0.8,
+        "friendship": 0.4,
         "work": 0
       }
     },
@@ -1347,46 +1301,17 @@
       "target_angle": 60,
       "orb": 4.886,
       "max_orb": 5,
-      "nature": "harmonique",
       "polarity": "positive",
       "category": "harmonique",
-      "strength": 61,
+      "strength": 48,
       "domain_impact": {
-        "love": 4,
-        "friendship": 4,
-        "work": 3
+        "love": 1.8,
+        "friendship": 1.8,
+        "work": 1.3
       }
     }
   ],
   "top_strengths": [
-    {
-      "person_a_body": "sun",
-      "person_a_label": "Soleil",
-      "person_a_sign": "Capricorn",
-      "person_a_sign_fr": "Capricorne",
-      "person_a_position": "10°46'12\" Capricorn",
-      "person_b_body": "jupiter",
-      "person_b_label": "Jupiter",
-      "person_b_sign": "Virgo",
-      "person_b_sign_fr": "Vierge",
-      "person_b_position": "7°37'29\" Virgo",
-      "aspect_type": "trine",
-      "aspect_label_fr": "Trigone",
-      "aspect_symbol": "△",
-      "exact_angle": 123.145,
-      "target_angle": 120,
-      "orb": 3.145,
-      "max_orb": 7,
-      "nature": "harmonique",
-      "polarity": "positive",
-      "category": "harmonique",
-      "strength": 100,
-      "domain_impact": {
-        "love": 4,
-        "friendship": 4,
-        "work": 18
-      }
-    },
     {
       "person_a_body": "moon",
       "person_a_label": "Lune",
@@ -1405,42 +1330,13 @@
       "target_angle": 60,
       "orb": 1.85,
       "max_orb": 5,
-      "nature": "harmonique",
       "polarity": "positive",
       "category": "harmonique",
-      "strength": 100,
+      "strength": 92,
       "domain_impact": {
-        "love": 22,
-        "friendship": 20,
-        "work": 3
-      }
-    },
-    {
-      "person_a_body": "moon",
-      "person_a_label": "Lune",
-      "person_a_sign": "Pisces",
-      "person_a_sign_fr": "Poissons",
-      "person_a_position": "2°41'38\" Pisces",
-      "person_b_body": "mars",
-      "person_b_label": "Mars",
-      "person_b_sign": "Taurus",
-      "person_b_sign_fr": "Taureau",
-      "person_b_position": "0°46'55\" Taurus",
-      "aspect_type": "sextile",
-      "aspect_label_fr": "Sextile",
-      "aspect_symbol": "⚹",
-      "exact_angle": 58.088,
-      "target_angle": 60,
-      "orb": 1.912,
-      "max_orb": 5,
-      "nature": "harmonique",
-      "polarity": "positive",
-      "category": "harmonique",
-      "strength": 100,
-      "domain_impact": {
-        "love": 4,
-        "friendship": 4,
-        "work": 3
+        "love": 10.8,
+        "friendship": 9.8,
+        "work": 1.3
       }
     },
     {
@@ -1461,14 +1357,13 @@
       "target_angle": 90,
       "orb": 5.438,
       "max_orb": 6,
-      "nature": "tension",
       "polarity": "challenge",
       "category": "magnétique",
-      "strength": 100,
+      "strength": 92,
       "domain_impact": {
-        "love": 3.2649999999999997,
-        "friendship": -1,
-        "work": -1
+        "love": 0.98,
+        "friendship": -2.2,
+        "work": -2
       }
     },
     {
@@ -1489,14 +1384,13 @@
       "target_angle": 90,
       "orb": 0.681,
       "max_orb": 6,
-      "nature": "tension",
       "polarity": "challenge",
       "category": "magnétique",
-      "strength": 100,
+      "strength": 92,
       "domain_impact": {
-        "love": 3.2649999999999997,
-        "friendship": -1,
-        "work": -1
+        "love": 0.98,
+        "friendship": -2.2,
+        "work": -2
       }
     },
     {
@@ -1517,14 +1411,40 @@
       "target_angle": 120,
       "orb": 1.281,
       "max_orb": 7,
-      "nature": "harmonique",
       "polarity": "positive",
       "category": "harmonique",
-      "strength": 100,
+      "strength": 85,
       "domain_impact": {
-        "love": 4,
-        "friendship": 4,
-        "work": 3
+        "love": 1.8,
+        "friendship": 1.8,
+        "work": 1.3
+      }
+    },
+    {
+      "person_a_body": "moon",
+      "person_a_label": "Lune",
+      "person_a_sign": "Pisces",
+      "person_a_sign_fr": "Poissons",
+      "person_a_position": "2°41'38\" Pisces",
+      "person_b_body": "mars",
+      "person_b_label": "Mars",
+      "person_b_sign": "Taurus",
+      "person_b_sign_fr": "Taureau",
+      "person_b_position": "0°46'55\" Taurus",
+      "aspect_type": "sextile",
+      "aspect_label_fr": "Sextile",
+      "aspect_symbol": "⚹",
+      "exact_angle": 58.088,
+      "target_angle": 60,
+      "orb": 1.912,
+      "max_orb": 5,
+      "polarity": "positive",
+      "category": "harmonique",
+      "strength": 79,
+      "domain_impact": {
+        "love": 1.8,
+        "friendship": 1.8,
+        "work": 1.3
       }
     },
     {
@@ -1545,74 +1465,44 @@
       "target_angle": 60,
       "orb": 1.706,
       "max_orb": 5,
-      "nature": "harmonique",
       "polarity": "positive",
       "category": "harmonique",
-      "strength": 98,
+      "strength": 74,
       "domain_impact": {
-        "love": 4,
-        "friendship": 4,
-        "work": 3
+        "love": 1.8,
+        "friendship": 1.8,
+        "work": 1.3
+      }
+    },
+    {
+      "person_a_body": "midheaven",
+      "person_a_label": "Milieu du Ciel",
+      "person_a_sign": "Sagittarius",
+      "person_a_sign_fr": "Sagittaire",
+      "person_a_position": "28°20'13\" Sagittarius",
+      "person_b_body": "mars",
+      "person_b_label": "Mars",
+      "person_b_sign": "Taurus",
+      "person_b_sign_fr": "Taureau",
+      "person_b_position": "0°46'55\" Taurus",
+      "aspect_type": "trine",
+      "aspect_label_fr": "Trigone",
+      "aspect_symbol": "△",
+      "exact_angle": 122.445,
+      "target_angle": 120,
+      "orb": 2.445,
+      "max_orb": 7,
+      "polarity": "positive",
+      "category": "harmonique",
+      "strength": 74,
+      "domain_impact": {
+        "love": 1.8,
+        "friendship": 1.8,
+        "work": 1.3
       }
     }
   ],
   "top_challenges": [
-    {
-      "person_a_body": "sun",
-      "person_a_label": "Soleil",
-      "person_a_sign": "Capricorn",
-      "person_a_sign_fr": "Capricorne",
-      "person_a_position": "10°46'12\" Capricorn",
-      "person_b_body": "mercury",
-      "person_b_label": "Mercure",
-      "person_b_sign": "Cancer",
-      "person_b_sign_fr": "Cancer",
-      "person_b_position": "11°33'17\" Cancer",
-      "aspect_type": "opposition",
-      "aspect_label_fr": "Opposition",
-      "aspect_symbol": "☍",
-      "exact_angle": 179.215,
-      "target_angle": 180,
-      "orb": 0.785,
-      "max_orb": 8,
-      "nature": "polarité",
-      "polarity": "challenge",
-      "category": "tension constructive",
-      "strength": 100,
-      "domain_impact": {
-        "love": -2,
-        "friendship": -1,
-        "work": -1
-      }
-    },
-    {
-      "person_a_body": "moon",
-      "person_a_label": "Lune",
-      "person_a_sign": "Pisces",
-      "person_a_sign_fr": "Poissons",
-      "person_a_position": "2°41'38\" Pisces",
-      "person_b_body": "ascendant",
-      "person_b_label": "Ascendant",
-      "person_b_sign": "Scorpio",
-      "person_b_sign_fr": "Scorpion",
-      "person_b_position": "27°21'46\" Scorpio",
-      "aspect_type": "square",
-      "aspect_label_fr": "Carré",
-      "aspect_symbol": "□",
-      "exact_angle": 95.331,
-      "target_angle": 90,
-      "orb": 5.331,
-      "max_orb": 6,
-      "nature": "tension",
-      "polarity": "challenge",
-      "category": "tension constructive",
-      "strength": 100,
-      "domain_impact": {
-        "love": -2,
-        "friendship": -1,
-        "work": -1
-      }
-    },
     {
       "person_a_body": "venus",
       "person_a_label": "Vénus",
@@ -1631,14 +1521,13 @@
       "target_angle": 90,
       "orb": 5.438,
       "max_orb": 6,
-      "nature": "tension",
       "polarity": "challenge",
       "category": "magnétique",
-      "strength": 100,
+      "strength": 92,
       "domain_impact": {
-        "love": 3.2649999999999997,
-        "friendship": -1,
-        "work": -1
+        "love": 0.98,
+        "friendship": -2.2,
+        "work": -2
       }
     },
     {
@@ -1659,42 +1548,13 @@
       "target_angle": 90,
       "orb": 1.241,
       "max_orb": 6,
-      "nature": "tension",
       "polarity": "challenge",
       "category": "tension constructive",
-      "strength": 100,
+      "strength": 92,
       "domain_impact": {
-        "love": -2,
-        "friendship": -1,
-        "work": -1
-      }
-    },
-    {
-      "person_a_body": "ascendant",
-      "person_a_label": "Ascendant",
-      "person_a_sign": "Pisces",
-      "person_a_sign_fr": "Poissons",
-      "person_a_position": "26°04'53\" Pisces",
-      "person_b_body": "moon",
-      "person_b_label": "Lune",
-      "person_b_sign": "Capricorn",
-      "person_b_sign_fr": "Capricorne",
-      "person_b_position": "0°50'39\" Capricorn",
-      "aspect_type": "square",
-      "aspect_label_fr": "Carré",
-      "aspect_symbol": "□",
-      "exact_angle": 85.237,
-      "target_angle": 90,
-      "orb": 4.763,
-      "max_orb": 6,
-      "nature": "tension",
-      "polarity": "challenge",
-      "category": "tension constructive",
-      "strength": 100,
-      "domain_impact": {
-        "love": -2,
-        "friendship": -1,
-        "work": -1
+        "love": -2.8,
+        "friendship": -2.2,
+        "work": -2
       }
     },
     {
@@ -1715,46 +1575,15 @@
       "target_angle": 90,
       "orb": 0.681,
       "max_orb": 6,
-      "nature": "tension",
       "polarity": "challenge",
       "category": "magnétique",
-      "strength": 100,
+      "strength": 92,
       "domain_impact": {
-        "love": 3.2649999999999997,
-        "friendship": -1,
-        "work": -1
+        "love": 0.98,
+        "friendship": -2.2,
+        "work": -2
       }
     },
-    {
-      "person_a_body": "neptune",
-      "person_a_label": "Neptune",
-      "person_a_sign": "Capricorn",
-      "person_a_sign_fr": "Capricorne",
-      "person_a_position": "12°02'04\" Capricorn",
-      "person_b_body": "mercury",
-      "person_b_label": "Mercure",
-      "person_b_sign": "Cancer",
-      "person_b_sign_fr": "Cancer",
-      "person_b_position": "11°33'17\" Cancer",
-      "aspect_type": "opposition",
-      "aspect_label_fr": "Opposition",
-      "aspect_symbol": "☍",
-      "exact_angle": 179.52,
-      "target_angle": 180,
-      "orb": 0.48,
-      "max_orb": 8,
-      "nature": "polarité",
-      "polarity": "challenge",
-      "category": "tension constructive",
-      "strength": 98,
-      "domain_impact": {
-        "love": -2,
-        "friendship": -1,
-        "work": -1
-      }
-    }
-  ],
-  "major_aspects": [
     {
       "person_a_body": "sun",
       "person_a_label": "Soleil",
@@ -1773,44 +1602,98 @@
       "target_angle": 180,
       "orb": 0.785,
       "max_orb": 8,
-      "nature": "polarité",
       "polarity": "challenge",
       "category": "tension constructive",
-      "strength": 100,
+      "strength": 81,
       "domain_impact": {
-        "love": -2,
-        "friendship": -1,
-        "work": -1
+        "love": -2.8,
+        "friendship": -2.2,
+        "work": -2
       }
     },
     {
-      "person_a_body": "sun",
-      "person_a_label": "Soleil",
-      "person_a_sign": "Capricorn",
-      "person_a_sign_fr": "Capricorne",
-      "person_a_position": "10°46'12\" Capricorn",
-      "person_b_body": "jupiter",
-      "person_b_label": "Jupiter",
-      "person_b_sign": "Virgo",
-      "person_b_sign_fr": "Vierge",
-      "person_b_position": "7°37'29\" Virgo",
-      "aspect_type": "trine",
-      "aspect_label_fr": "Trigone",
-      "aspect_symbol": "△",
-      "exact_angle": 123.145,
-      "target_angle": 120,
-      "orb": 3.145,
-      "max_orb": 7,
-      "nature": "harmonique",
-      "polarity": "positive",
-      "category": "harmonique",
-      "strength": 100,
+      "person_a_body": "ascendant",
+      "person_a_label": "Ascendant",
+      "person_a_sign": "Pisces",
+      "person_a_sign_fr": "Poissons",
+      "person_a_position": "26°04'53\" Pisces",
+      "person_b_body": "moon",
+      "person_b_label": "Lune",
+      "person_b_sign": "Capricorn",
+      "person_b_sign_fr": "Capricorne",
+      "person_b_position": "0°50'39\" Capricorn",
+      "aspect_type": "square",
+      "aspect_label_fr": "Carré",
+      "aspect_symbol": "□",
+      "exact_angle": 85.237,
+      "target_angle": 90,
+      "orb": 4.763,
+      "max_orb": 6,
+      "polarity": "challenge",
+      "category": "tension constructive",
+      "strength": 78,
       "domain_impact": {
-        "love": 4,
-        "friendship": 4,
-        "work": 18
+        "love": -2.8,
+        "friendship": -2.2,
+        "work": -2
       }
     },
+    {
+      "person_a_body": "moon",
+      "person_a_label": "Lune",
+      "person_a_sign": "Pisces",
+      "person_a_sign_fr": "Poissons",
+      "person_a_position": "2°41'38\" Pisces",
+      "person_b_body": "ascendant",
+      "person_b_label": "Ascendant",
+      "person_b_sign": "Scorpio",
+      "person_b_sign_fr": "Scorpion",
+      "person_b_position": "27°21'46\" Scorpio",
+      "aspect_type": "square",
+      "aspect_label_fr": "Carré",
+      "aspect_symbol": "□",
+      "exact_angle": 95.331,
+      "target_angle": 90,
+      "orb": 5.331,
+      "max_orb": 6,
+      "polarity": "challenge",
+      "category": "tension constructive",
+      "strength": 75,
+      "domain_impact": {
+        "love": -2.8,
+        "friendship": -2.2,
+        "work": -2
+      }
+    },
+    {
+      "person_a_body": "midheaven",
+      "person_a_label": "Milieu du Ciel",
+      "person_a_sign": "Sagittarius",
+      "person_a_sign_fr": "Sagittaire",
+      "person_a_position": "28°20'13\" Sagittarius",
+      "person_b_body": "venus",
+      "person_b_label": "Vénus",
+      "person_b_sign": "Gemini",
+      "person_b_sign_fr": "Gémeaux",
+      "person_b_position": "25°24'02\" Gemini",
+      "aspect_type": "opposition",
+      "aspect_label_fr": "Opposition",
+      "aspect_symbol": "☍",
+      "exact_angle": 177.064,
+      "target_angle": 180,
+      "orb": 2.936,
+      "max_orb": 8,
+      "polarity": "challenge",
+      "category": "tension constructive",
+      "strength": 74,
+      "domain_impact": {
+        "love": -2.8,
+        "friendship": -2.2,
+        "work": -2
+      }
+    }
+  ],
+  "major_aspects": [
     {
       "person_a_body": "moon",
       "person_a_label": "Lune",
@@ -1829,70 +1712,13 @@
       "target_angle": 60,
       "orb": 1.85,
       "max_orb": 5,
-      "nature": "harmonique",
       "polarity": "positive",
       "category": "harmonique",
-      "strength": 100,
+      "strength": 92,
       "domain_impact": {
-        "love": 22,
-        "friendship": 20,
-        "work": 3
-      }
-    },
-    {
-      "person_a_body": "moon",
-      "person_a_label": "Lune",
-      "person_a_sign": "Pisces",
-      "person_a_sign_fr": "Poissons",
-      "person_a_position": "2°41'38\" Pisces",
-      "person_b_body": "mars",
-      "person_b_label": "Mars",
-      "person_b_sign": "Taurus",
-      "person_b_sign_fr": "Taureau",
-      "person_b_position": "0°46'55\" Taurus",
-      "aspect_type": "sextile",
-      "aspect_label_fr": "Sextile",
-      "aspect_symbol": "⚹",
-      "exact_angle": 58.088,
-      "target_angle": 60,
-      "orb": 1.912,
-      "max_orb": 5,
-      "nature": "harmonique",
-      "polarity": "positive",
-      "category": "harmonique",
-      "strength": 100,
-      "domain_impact": {
-        "love": 4,
-        "friendship": 4,
-        "work": 3
-      }
-    },
-    {
-      "person_a_body": "moon",
-      "person_a_label": "Lune",
-      "person_a_sign": "Pisces",
-      "person_a_sign_fr": "Poissons",
-      "person_a_position": "2°41'38\" Pisces",
-      "person_b_body": "ascendant",
-      "person_b_label": "Ascendant",
-      "person_b_sign": "Scorpio",
-      "person_b_sign_fr": "Scorpion",
-      "person_b_position": "27°21'46\" Scorpio",
-      "aspect_type": "square",
-      "aspect_label_fr": "Carré",
-      "aspect_symbol": "□",
-      "exact_angle": 95.331,
-      "target_angle": 90,
-      "orb": 5.331,
-      "max_orb": 6,
-      "nature": "tension",
-      "polarity": "challenge",
-      "category": "tension constructive",
-      "strength": 100,
-      "domain_impact": {
-        "love": -2,
-        "friendship": -1,
-        "work": -1
+        "love": 10.8,
+        "friendship": 9.8,
+        "work": 1.3
       }
     },
     {
@@ -1913,14 +1739,13 @@
       "target_angle": 90,
       "orb": 5.438,
       "max_orb": 6,
-      "nature": "tension",
       "polarity": "challenge",
       "category": "magnétique",
-      "strength": 100,
+      "strength": 92,
       "domain_impact": {
-        "love": 3.2649999999999997,
-        "friendship": -1,
-        "work": -1
+        "love": 0.98,
+        "friendship": -2.2,
+        "work": -2
       }
     },
     {
@@ -1941,42 +1766,13 @@
       "target_angle": 90,
       "orb": 1.241,
       "max_orb": 6,
-      "nature": "tension",
       "polarity": "challenge",
       "category": "tension constructive",
-      "strength": 100,
+      "strength": 92,
       "domain_impact": {
-        "love": -2,
-        "friendship": -1,
-        "work": -1
-      }
-    },
-    {
-      "person_a_body": "ascendant",
-      "person_a_label": "Ascendant",
-      "person_a_sign": "Pisces",
-      "person_a_sign_fr": "Poissons",
-      "person_a_position": "26°04'53\" Pisces",
-      "person_b_body": "moon",
-      "person_b_label": "Lune",
-      "person_b_sign": "Capricorn",
-      "person_b_sign_fr": "Capricorne",
-      "person_b_position": "0°50'39\" Capricorn",
-      "aspect_type": "square",
-      "aspect_label_fr": "Carré",
-      "aspect_symbol": "□",
-      "exact_angle": 85.237,
-      "target_angle": 90,
-      "orb": 4.763,
-      "max_orb": 6,
-      "nature": "tension",
-      "polarity": "challenge",
-      "category": "tension constructive",
-      "strength": 100,
-      "domain_impact": {
-        "love": -2,
-        "friendship": -1,
-        "work": -1
+        "love": -2.8,
+        "friendship": -2.2,
+        "work": -2
       }
     },
     {
@@ -1997,14 +1793,13 @@
       "target_angle": 90,
       "orb": 0.681,
       "max_orb": 6,
-      "nature": "tension",
       "polarity": "challenge",
       "category": "magnétique",
-      "strength": 100,
+      "strength": 92,
       "domain_impact": {
-        "love": 3.2649999999999997,
-        "friendship": -1,
-        "work": -1
+        "love": 0.98,
+        "friendship": -2.2,
+        "work": -2
       }
     },
     {
@@ -2025,14 +1820,121 @@
       "target_angle": 120,
       "orb": 1.281,
       "max_orb": 7,
-      "nature": "harmonique",
       "polarity": "positive",
       "category": "harmonique",
-      "strength": 100,
+      "strength": 85,
       "domain_impact": {
-        "love": 4,
-        "friendship": 4,
-        "work": 3
+        "love": 1.8,
+        "friendship": 1.8,
+        "work": 1.3
+      }
+    },
+    {
+      "person_a_body": "sun",
+      "person_a_label": "Soleil",
+      "person_a_sign": "Capricorn",
+      "person_a_sign_fr": "Capricorne",
+      "person_a_position": "10°46'12\" Capricorn",
+      "person_b_body": "mercury",
+      "person_b_label": "Mercure",
+      "person_b_sign": "Cancer",
+      "person_b_sign_fr": "Cancer",
+      "person_b_position": "11°33'17\" Cancer",
+      "aspect_type": "opposition",
+      "aspect_label_fr": "Opposition",
+      "aspect_symbol": "☍",
+      "exact_angle": 179.215,
+      "target_angle": 180,
+      "orb": 0.785,
+      "max_orb": 8,
+      "polarity": "challenge",
+      "category": "tension constructive",
+      "strength": 81,
+      "domain_impact": {
+        "love": -2.8,
+        "friendship": -2.2,
+        "work": -2
+      }
+    },
+    {
+      "person_a_body": "moon",
+      "person_a_label": "Lune",
+      "person_a_sign": "Pisces",
+      "person_a_sign_fr": "Poissons",
+      "person_a_position": "2°41'38\" Pisces",
+      "person_b_body": "mars",
+      "person_b_label": "Mars",
+      "person_b_sign": "Taurus",
+      "person_b_sign_fr": "Taureau",
+      "person_b_position": "0°46'55\" Taurus",
+      "aspect_type": "sextile",
+      "aspect_label_fr": "Sextile",
+      "aspect_symbol": "⚹",
+      "exact_angle": 58.088,
+      "target_angle": 60,
+      "orb": 1.912,
+      "max_orb": 5,
+      "polarity": "positive",
+      "category": "harmonique",
+      "strength": 79,
+      "domain_impact": {
+        "love": 1.8,
+        "friendship": 1.8,
+        "work": 1.3
+      }
+    },
+    {
+      "person_a_body": "ascendant",
+      "person_a_label": "Ascendant",
+      "person_a_sign": "Pisces",
+      "person_a_sign_fr": "Poissons",
+      "person_a_position": "26°04'53\" Pisces",
+      "person_b_body": "moon",
+      "person_b_label": "Lune",
+      "person_b_sign": "Capricorn",
+      "person_b_sign_fr": "Capricorne",
+      "person_b_position": "0°50'39\" Capricorn",
+      "aspect_type": "square",
+      "aspect_label_fr": "Carré",
+      "aspect_symbol": "□",
+      "exact_angle": 85.237,
+      "target_angle": 90,
+      "orb": 4.763,
+      "max_orb": 6,
+      "polarity": "challenge",
+      "category": "tension constructive",
+      "strength": 78,
+      "domain_impact": {
+        "love": -2.8,
+        "friendship": -2.2,
+        "work": -2
+      }
+    },
+    {
+      "person_a_body": "moon",
+      "person_a_label": "Lune",
+      "person_a_sign": "Pisces",
+      "person_a_sign_fr": "Poissons",
+      "person_a_position": "2°41'38\" Pisces",
+      "person_b_body": "ascendant",
+      "person_b_label": "Ascendant",
+      "person_b_sign": "Scorpio",
+      "person_b_sign_fr": "Scorpion",
+      "person_b_position": "27°21'46\" Scorpio",
+      "aspect_type": "square",
+      "aspect_label_fr": "Carré",
+      "aspect_symbol": "□",
+      "exact_angle": 95.331,
+      "target_angle": 90,
+      "orb": 5.331,
+      "max_orb": 6,
+      "polarity": "challenge",
+      "category": "tension constructive",
+      "strength": 75,
+      "domain_impact": {
+        "love": -2.8,
+        "friendship": -2.2,
+        "work": -2
       }
     },
     {
@@ -2053,13 +1955,12 @@
       "target_angle": 0,
       "orb": 2.507,
       "max_orb": 8,
-      "nature": "fusion",
       "polarity": "intense",
       "category": "intense",
-      "strength": 99,
+      "strength": 75,
       "domain_impact": {
-        "love": 0,
-        "friendship": 0,
+        "love": 0.8,
+        "friendship": 0.4,
         "work": 0
       }
     },
@@ -2081,14 +1982,40 @@
       "target_angle": 60,
       "orb": 1.706,
       "max_orb": 5,
-      "nature": "harmonique",
       "polarity": "positive",
       "category": "harmonique",
-      "strength": 98,
+      "strength": 74,
       "domain_impact": {
-        "love": 4,
-        "friendship": 4,
-        "work": 3
+        "love": 1.8,
+        "friendship": 1.8,
+        "work": 1.3
+      }
+    },
+    {
+      "person_a_body": "saturn",
+      "person_a_label": "Saturne",
+      "person_a_sign": "Capricorn",
+      "person_a_sign_fr": "Capricorne",
+      "person_a_position": "15°39'03\" Capricorn",
+      "person_b_body": "uranus",
+      "person_b_label": "Uranus",
+      "person_b_sign": "Capricorn",
+      "person_b_sign_fr": "Capricorne",
+      "person_b_position": "16°52'55\" Capricorn",
+      "aspect_type": "conjunction",
+      "aspect_label_fr": "Conjonction",
+      "aspect_symbol": "☌",
+      "exact_angle": 1.231,
+      "target_angle": 0,
+      "orb": 1.231,
+      "max_orb": 8,
+      "polarity": "intense",
+      "category": "intense",
+      "strength": 74,
+      "domain_impact": {
+        "love": 0.8,
+        "friendship": 0.4,
+        "work": 0
       }
     }
   ]

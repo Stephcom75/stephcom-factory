@@ -55,80 +55,36 @@ const bodies = [
 ];
 
 const aspectTypes = [
-  {
-    type: "conjunction",
-    label_fr: "Conjonction",
-    angle: 0,
-    orb: 8,
-    symbol: "☌",
-    nature: "fusion",
-    polarity: "intense"
-  },
-  {
-    type: "sextile",
-    label_fr: "Sextile",
-    angle: 60,
-    orb: 5,
-    symbol: "⚹",
-    nature: "harmonique",
-    polarity: "positive"
-  },
-  {
-    type: "square",
-    label_fr: "Carré",
-    angle: 90,
-    orb: 6,
-    symbol: "□",
-    nature: "tension",
-    polarity: "challenge"
-  },
-  {
-    type: "trine",
-    label_fr: "Trigone",
-    angle: 120,
-    orb: 7,
-    symbol: "△",
-    nature: "harmonique",
-    polarity: "positive"
-  },
-  {
-    type: "opposition",
-    label_fr: "Opposition",
-    angle: 180,
-    orb: 8,
-    symbol: "☍",
-    nature: "polarité",
-    polarity: "challenge"
-  }
+  { type: "conjunction", label_fr: "Conjonction", angle: 0, orb: 8, symbol: "☌", polarity: "intense" },
+  { type: "sextile", label_fr: "Sextile", angle: 60, orb: 5, symbol: "⚹", polarity: "positive" },
+  { type: "square", label_fr: "Carré", angle: 90, orb: 6, symbol: "□", polarity: "challenge" },
+  { type: "trine", label_fr: "Trigone", angle: 120, orb: 7, symbol: "△", polarity: "positive" },
+  { type: "opposition", label_fr: "Opposition", angle: 180, orb: 8, symbol: "☍", polarity: "challenge" }
 ];
 
 const relationshipWeights = {
-  sun_moon: 1.45,
-  moon_sun: 1.45,
-  moon_moon: 1.55,
-  venus_mars: 1.6,
-  mars_venus: 1.6,
-  venus_venus: 1.25,
-  mars_mars: 1.15,
-  mercury_mercury: 1.2,
-  ascendant_sun: 1.35,
-  sun_ascendant: 1.35,
-  ascendant_moon: 1.25,
-  moon_ascendant: 1.25,
-  ascendant_venus: 1.3,
-  venus_ascendant: 1.3,
-  ascendant_mars: 1.2,
-  mars_ascendant: 1.2,
-  saturn_sun: 1.15,
-  sun_saturn: 1.15,
-  saturn_moon: 1.2,
-  moon_saturn: 1.2,
-  saturn_venus: 1.2,
-  venus_saturn: 1.2,
-  jupiter_sun: 1.1,
-  sun_jupiter: 1.1,
-  jupiter_moon: 1.05,
-  moon_jupiter: 1.05
+  sun_moon: 1.35,
+  moon_sun: 1.35,
+  moon_moon: 1.4,
+  venus_mars: 1.45,
+  mars_venus: 1.45,
+  venus_venus: 1.2,
+  mars_mars: 1.05,
+  mercury_mercury: 1.15,
+  ascendant_sun: 1.2,
+  sun_ascendant: 1.2,
+  ascendant_moon: 1.15,
+  moon_ascendant: 1.15,
+  ascendant_venus: 1.2,
+  venus_ascendant: 1.2,
+  ascendant_mars: 1.1,
+  mars_ascendant: 1.1,
+  saturn_sun: 1.1,
+  sun_saturn: 1.1,
+  saturn_moon: 1.15,
+  moon_saturn: 1.15,
+  saturn_venus: 1.15,
+  venus_saturn: 1.15
 };
 
 function getWestern(data) {
@@ -136,17 +92,21 @@ function getWestern(data) {
 }
 
 function getClientName(data, fallback) {
-  return data.client?.first_name || fallback;
+  if (data.client && data.client.first_name) {
+    return data.client.first_name;
+  }
+  return fallback;
 }
 
-function safe(value) {
-  if (value === null || value === undefined) return "";
-  return String(value);
-}
-
-function getBody(data, bodyKey) {
+function getBody(data, key) {
   const western = getWestern(data);
-  return western[bodyKey] || null;
+  return western[key] || null;
+}
+
+function normalizeAngle(angle) {
+  let n = angle % 360;
+  if (n < 0) n += 360;
+  return n;
 }
 
 function bodyLongitude(body) {
@@ -164,57 +124,30 @@ function bodyLongitude(body) {
   const minute = Number(body.minute || 0);
   const second = Number(body.second || 0);
 
-  return normalizeAngle(
-    signOrder[body.sign] * 30 +
-    degree +
-    minute / 60 +
-    second / 3600
-  );
+  return normalizeAngle(signOrder[body.sign] * 30 + degree + minute / 60 + second / 3600);
 }
 
-function normalizeAngle(angle) {
-  let normalized = angle % 360;
-
-  if (normalized < 0) {
-    normalized += 360;
-  }
-
-  return normalized;
-}
-
-function angularDistance(angleA, angleB) {
-  const diff = Math.abs(normalizeAngle(angleA) - normalizeAngle(angleB));
+function angularDistance(a, b) {
+  const diff = Math.abs(normalizeAngle(a) - normalizeAngle(b));
   return Math.min(diff, 360 - diff);
 }
 
 function detectAspect(distance) {
   for (const aspect of aspectTypes) {
     const deviation = Math.abs(distance - aspect.angle);
-
     if (deviation <= aspect.orb) {
       return {
-        ...aspect,
-        deviation
+        type: aspect.type,
+        label_fr: aspect.label_fr,
+        angle: aspect.angle,
+        orb: aspect.orb,
+        symbol: aspect.symbol,
+        polarity: aspect.polarity,
+        deviation: deviation
       };
     }
   }
-
   return null;
-}
-
-function aspectStrength(aspect, bodyA, bodyB) {
-  const priorityA = bodyA.priority || 1;
-  const priorityB = bodyB.priority || 1;
-  const pairKey = String(bodyA.key) + "_" + String(bodyB.key);
-  const pairWeight = relationshipWeights[pairKey] || 1;
-  const orbQuality = Math.max(0, 1 - aspect.deviation / aspect.orb);
-
-  const base = 40;
-  const priorityBonus = (priorityA + priorityB) * 4;
-  const exactnessBonus = Math.round(orbQuality * 40);
-  const weighted = Math.round((base + priorityBonus + exactnessBonus) * pairWeight);
-
-  return Math.min(100, weighted);
 }
 
 function aspectCategory(aspect, bodyA, bodyB) {
@@ -242,33 +175,31 @@ function aspectCategory(aspect, bodyA, bodyB) {
     return "karmique / structurant";
   }
 
-  if (aspect.polarity === "positive") {
-    return "harmonique";
-  }
-
-  if (aspect.polarity === "challenge") {
-    return "tension constructive";
-  }
-
+  if (aspect.polarity === "positive") return "harmonique";
+  if (aspect.polarity === "challenge") return "tension constructive";
   return "intense";
 }
 
-function impactForDomain(aspect, bodyA, bodyB) {
+function aspectStrength(aspect, bodyA, bodyB) {
+  const pairKey = String(bodyA.key) + "_" + String(bodyB.key);
+  const pairWeight = relationshipWeights[pairKey] || 1;
+  const priorityBonus = ((bodyA.priority || 1) + (bodyB.priority || 1)) * 3;
+  const orbQuality = Math.max(0, 1 - aspect.deviation / aspect.orb);
+  const exactnessBonus = Math.round(orbQuality * 28);
+  const raw = 32 + priorityBonus + exactnessBonus;
+  return Math.min(92, Math.round(raw * pairWeight));
+}
+
+function domainImpact(aspect, bodyA, bodyB) {
   const pairKey = String(bodyA.key) + "_" + String(bodyB.key);
 
   let love = 0;
   let friendship = 0;
   let work = 0;
 
-  const positiveMultiplier =
-    aspect.polarity === "positive" ? 1 :
-    aspect.polarity === "intense" ? 0.75 :
-    0.45;
-
-  const challengeMultiplier =
-    aspect.polarity === "challenge" ? 0.65 :
-    aspect.polarity === "intense" ? 0.75 :
-    1;
+  let multiplier = 1;
+  if (aspect.polarity === "challenge") multiplier = 0.42;
+  if (aspect.polarity === "intense") multiplier = 0.68;
 
   if (
     pairKey === "venus_mars" ||
@@ -280,93 +211,82 @@ function impactForDomain(aspect, bodyA, bodyB) {
     pairKey === "ascendant_venus" ||
     pairKey === "venus_ascendant"
   ) {
-    love += 18 * positiveMultiplier * challengeMultiplier;
+    love += 9 * multiplier;
   }
 
   if (
     pairKey === "sun_sun" ||
     pairKey === "moon_moon" ||
     pairKey === "mercury_mercury" ||
-    pairKey === "venus_venus" ||
-    pairKey === "jupiter_moon" ||
-    pairKey === "moon_jupiter"
+    pairKey === "venus_venus"
   ) {
-    friendship += 16 * positiveMultiplier * challengeMultiplier;
+    friendship += 8 * multiplier;
   }
 
   if (
     pairKey === "mercury_mercury" ||
     pairKey === "sun_saturn" ||
     pairKey === "saturn_sun" ||
-    pairKey === "mars_mars" ||
-    pairKey === "jupiter_saturn" ||
-    pairKey === "saturn_jupiter" ||
-    pairKey === "sun_jupiter" ||
-    pairKey === "jupiter_sun"
+    pairKey === "mars_mars"
   ) {
-    work += 15 * positiveMultiplier * challengeMultiplier;
+    work += 7 * multiplier;
   }
 
   if (aspect.polarity === "positive") {
-    love += 4;
-    friendship += 4;
-    work += 3;
+    love += 1.8;
+    friendship += 1.8;
+    work += 1.3;
   }
 
   if (aspect.polarity === "challenge") {
-    love -= 2;
-    friendship -= 1;
-    work -= 1;
+    love -= 2.8;
+    friendship -= 2.2;
+    work -= 2;
   }
 
-  return {
-    love,
-    friendship,
-    work
-  };
+  if (aspect.polarity === "intense") {
+    love += 0.8;
+    friendship += 0.4;
+  }
+
+  return { love: love, friendship: friendship, work: work };
 }
 
-function calculateSynastryAspects() {
-  const aspects = [];
+function calculateAspects() {
+  const results = [];
 
   for (const bodyA of bodies) {
-    const sourceBodyA = getBody(personA, bodyA.key);
-    const longitudeA = bodyLongitude(sourceBodyA);
+    const sourceA = getBody(personA, bodyA.key);
+    const lonA = bodyLongitude(sourceA);
 
-    if (longitudeA === null) {
-      continue;
-    }
+    if (lonA === null) continue;
 
     for (const bodyB of bodies) {
-      const sourceBodyB = getBody(personB, bodyB.key);
-      const longitudeB = bodyLongitude(sourceBodyB);
+      const sourceB = getBody(personB, bodyB.key);
+      const lonB = bodyLongitude(sourceB);
 
-      if (longitudeB === null) {
-        continue;
-      }
+      if (lonB === null) continue;
 
-      const distance = angularDistance(longitudeA, longitudeB);
+      const distance = angularDistance(lonA, lonB);
       const aspect = detectAspect(distance);
 
-      if (!aspect) {
-        continue;
-      }
+      if (!aspect) continue;
 
       const strength = aspectStrength(aspect, bodyA, bodyB);
       const category = aspectCategory(aspect, bodyA, bodyB);
-      const domainImpact = impactForDomain(aspect, bodyA, bodyB);
+      const impact = domainImpact(aspect, bodyA, bodyB);
 
-      aspects.push({
+      results.push({
         person_a_body: bodyA.key,
         person_a_label: bodyA.label,
-        person_a_sign: sourceBodyA?.sign || "",
-        person_a_sign_fr: signNamesFr[sourceBodyA?.sign] || sourceBodyA?.sign || "",
-        person_a_position: sourceBodyA?.formatted || "",
+        person_a_sign: sourceA.sign || "",
+        person_a_sign_fr: signNamesFr[sourceA.sign] || sourceA.sign || "",
+        person_a_position: sourceA.formatted || "",
         person_b_body: bodyB.key,
         person_b_label: bodyB.label,
-        person_b_sign: sourceBodyB?.sign || "",
-        person_b_sign_fr: signNamesFr[sourceBodyB?.sign] || sourceBodyB?.sign || "",
-        person_b_position: sourceBodyB?.formatted || "",
+        person_b_sign: sourceB.sign || "",
+        person_b_sign_fr: signNamesFr[sourceB.sign] || sourceB.sign || "",
+        person_b_position: sourceB.formatted || "",
         aspect_type: aspect.type,
         aspect_label_fr: aspect.label_fr,
         aspect_symbol: aspect.symbol,
@@ -374,16 +294,21 @@ function calculateSynastryAspects() {
         target_angle: aspect.angle,
         orb: Number(aspect.deviation.toFixed(3)),
         max_orb: aspect.orb,
-        nature: aspect.nature,
         polarity: aspect.polarity,
-        category,
-        strength,
-        domain_impact: domainImpact
+        category: category,
+        strength: strength,
+        domain_impact: impact
       });
     }
   }
 
-  return aspects.sort((a, b) => b.strength - a.strength);
+  return results.sort(function (a, b) {
+    return b.strength - a.strength;
+  });
+}
+
+function normalizeScore(value) {
+  return Math.round(Math.max(0, Math.min(100, value)));
 }
 
 function scoreLabel(score) {
@@ -394,23 +319,39 @@ function scoreLabel(score) {
   return "À travailler";
 }
 
-function normalizeScore(value) {
-  const score = Math.round(Math.max(0, Math.min(100, value)));
-  return score;
+function applyDiminishingReturns(value) {
+  if (value <= 0) return value;
+  return Math.sqrt(value) * 6.5;
 }
 
 function buildScores(aspects) {
-  let love = 45;
-  let friendship = 45;
-  let work = 45;
+  let lovePositive = 0;
+  let loveChallenge = 0;
+  let friendshipPositive = 0;
+  let friendshipChallenge = 0;
+  let workPositive = 0;
+  let workChallenge = 0;
 
   for (const aspect of aspects) {
-    const strengthFactor = aspect.strength / 100;
+    const factor = aspect.strength / 100;
 
-    love += aspect.domain_impact.love * strengthFactor;
-    friendship += aspect.domain_impact.friendship * strengthFactor;
-    work += aspect.domain_impact.work * strengthFactor;
+    const loveImpact = aspect.domain_impact.love * factor;
+    const friendshipImpact = aspect.domain_impact.friendship * factor;
+    const workImpact = aspect.domain_impact.work * factor;
+
+    if (loveImpact >= 0) lovePositive += loveImpact;
+    else loveChallenge += Math.abs(loveImpact);
+
+    if (friendshipImpact >= 0) friendshipPositive += friendshipImpact;
+    else friendshipChallenge += Math.abs(friendshipImpact);
+
+    if (workImpact >= 0) workPositive += workImpact;
+    else workChallenge += Math.abs(workImpact);
   }
+
+  let love = 52 + applyDiminishingReturns(lovePositive) - applyDiminishingReturns(loveChallenge) * 0.75;
+  let friendship = 52 + applyDiminishingReturns(friendshipPositive) - applyDiminishingReturns(friendshipChallenge) * 0.75;
+  let work = 52 + applyDiminishingReturns(workPositive) - applyDiminishingReturns(workChallenge) * 0.75;
 
   love = normalizeScore(love);
   friendship = normalizeScore(friendship);
@@ -419,73 +360,26 @@ function buildScores(aspects) {
   const global = normalizeScore(love * 0.45 + friendship * 0.3 + work * 0.25);
 
   return {
-    love: {
-      label: "Amour",
-      score: love,
-      level: scoreLabel(love)
-    },
-    friendship: {
-      label: "Amitié",
-      score: friendship,
-      level: scoreLabel(friendship)
-    },
-    work: {
-      label: "Travail",
-      score: work,
-      level: scoreLabel(work)
-    },
-    global: {
-      label: "Compatibilité globale",
-      score: global,
-      level: scoreLabel(global)
-    }
+    love: { label: "Amour", score: love, level: scoreLabel(love) },
+    friendship: { label: "Amitié", score: friendship, level: scoreLabel(friendship) },
+    work: { label: "Travail", score: work, level: scoreLabel(work) },
+    global: { label: "Compatibilité globale", score: global, level: scoreLabel(global) }
   };
 }
 
 function splitAspects(aspects) {
-  const strengths = aspects.filter((aspect) => {
-    return aspect.polarity === "positive" || aspect.category === "magnétique";
+  const strengths = aspects.filter(function (a) {
+    return a.polarity === "positive" || a.category === "magnétique";
   });
 
-  const challenges = aspects.filter((aspect) => {
-    return aspect.polarity === "challenge" || aspect.category === "karmique / structurant";
+  const challenges = aspects.filter(function (a) {
+    return a.polarity === "challenge" || a.category === "karmique / structurant";
   });
 
   return {
     top_strengths: strengths.slice(0, 7),
     top_challenges: challenges.slice(0, 7),
     major_aspects: aspects.slice(0, 12)
-  };
-}
-
-function buildReport(aspects, scores) {
-  const split = splitAspects(aspects);
-
-  return {
-    metadata: {
-      project: "ASTRO_PREMIUM",
-      version: "1.0",
-      type: "synastry_aspects",
-      note: "Calcul des aspects exacts entre deux thèmes. Base technique du futur moteur de compatibilité premium."
-    },
-    people: {
-      person_a: {
-        name: getClientName(personA, "Personne A")
-      },
-      person_b: {
-        name: getClientName(personB, "Personne B")
-      }
-    },
-    scores,
-    counts: {
-      total_aspects: aspects.length,
-      strengths: split.top_strengths.length,
-      challenges: split.top_challenges.length
-    },
-    aspects,
-    top_strengths: split.top_strengths,
-    top_challenges: split.top_challenges,
-    major_aspects: split.major_aspects
   };
 }
 
@@ -507,78 +401,99 @@ function aspectLine(aspect) {
 }
 
 function markdownReport(report) {
-  const strengthsText =
-    report.top_strengths.length > 0
-      ? report.top_strengths.map(aspectLine).join("\n")
-      : "- Aucun aspect harmonique majeur détecté dans cette première sélection.";
+  const strengthLines = report.top_strengths.length
+    ? report.top_strengths.map(aspectLine).join("\n")
+    : "- Aucun aspect harmonique majeur détecté.";
 
-  const challengesText =
-    report.top_challenges.length > 0
-      ? report.top_challenges.map(aspectLine).join("\n")
-      : "- Aucun aspect de tension majeur détecté dans cette première sélection.";
+  const challengeLines = report.top_challenges.length
+    ? report.top_challenges.map(aspectLine).join("\n")
+    : "- Aucun aspect de tension majeur détecté.";
 
-  const majorText =
-    report.major_aspects.length > 0
-      ? report.major_aspects.map(aspectLine).join("\n")
-      : "- Aucun aspect majeur détecté.";
+  const majorLines = report.major_aspects.length
+    ? report.major_aspects.map(aspectLine).join("\n")
+    : "- Aucun aspect majeur détecté.";
 
-  return `# Rapport technique de synastrie
-
-## Personnes comparées
-
-- Personne A : ${report.people.person_a.name}
-- Personne B : ${report.people.person_b.name}
-
----
-
-## Scores recalculés avec aspects exacts
-
-| Domaine | Score | Niveau |
-|---|---:|---|
-| Amour | ${report.scores.love.score}% | ${report.scores.love.level} |
-| Amitié | ${report.scores.friendship.score}% | ${report.scores.friendship.level} |
-| Travail | ${report.scores.work.score}% | ${report.scores.work.level} |
-| Global | ${report.scores.global.score}% | ${report.scores.global.level} |
-
----
-
-## Aspects forts / harmonieux
-
-${strengthsText}
-
----
-
-## Aspects de tension / structuration
-
-${challengesText}
-
----
-
-## Aspects majeurs détectés
-
-${majorText}
-
----
-
-## Note produit
-
-Ce fichier est une base technique.
-La prochaine étape consiste à utiliser ces aspects exacts pour générer une interprétation premium avec Mistral, puis à connecter ces nouveaux scores au bloc visuel de compatibilité.
-`;
+  return [
+    "# Rapport technique de synastrie",
+    "",
+    "## Personnes comparées",
+    "",
+    "- Personne A : " + report.people.person_a.name,
+    "- Personne B : " + report.people.person_b.name,
+    "",
+    "---",
+    "",
+    "## Scores recalculés avec aspects exacts",
+    "",
+    "| Domaine | Score | Niveau |",
+    "|---|---:|---|",
+    "| Amour | " + report.scores.love.score + "% | " + report.scores.love.level + " |",
+    "| Amitié | " + report.scores.friendship.score + "% | " + report.scores.friendship.level + " |",
+    "| Travail | " + report.scores.work.score + "% | " + report.scores.work.level + " |",
+    "| Global | " + report.scores.global.score + "% | " + report.scores.global.level + " |",
+    "",
+    "---",
+    "",
+    "## Aspects forts / harmonieux",
+    "",
+    strengthLines,
+    "",
+    "---",
+    "",
+    "## Aspects de tension / structuration",
+    "",
+    challengeLines,
+    "",
+    "---",
+    "",
+    "## Aspects majeurs détectés",
+    "",
+    majorLines,
+    "",
+    "---",
+    "",
+    "## Note produit",
+    "",
+    "Ce fichier est une base technique. La prochaine étape consiste à utiliser ces aspects exacts pour générer une interprétation premium avec Mistral, puis à connecter ces nouveaux scores au bloc visuel de compatibilité.",
+    ""
+  ].join("\n");
 }
 
-const aspects = calculateSynastryAspects();
+const aspects = calculateAspects();
 const scores = buildScores(aspects);
-const report = buildReport(aspects, scores);
+const split = splitAspects(aspects);
+
+const report = {
+  metadata: {
+    project: "ASTRO_PREMIUM",
+    version: "1.1",
+    type: "synastry_aspects",
+    note: "Calcul des aspects exacts entre deux thèmes avec scoring calibré."
+  },
+  people: {
+    person_a: { name: getClientName(personA, "Personne A") },
+    person_b: { name: getClientName(personB, "Personne B") }
+  },
+  scores: scores,
+  counts: {
+    total_aspects: aspects.length,
+    strengths: split.top_strengths.length,
+    challenges: split.top_challenges.length
+  },
+  aspects: aspects,
+  top_strengths: split.top_strengths,
+  top_challenges: split.top_challenges,
+  major_aspects: split.major_aspects
+};
 
 fs.writeFileSync(outputJsonPath, JSON.stringify(report, null, 2), "utf8");
 fs.writeFileSync(outputMdPath, markdownReport(report), "utf8");
 
-console.log("Synastrie generee avec succes :");
+console.log("Synastrie calibree generee avec succes :");
 console.log(outputJsonPath);
 console.log(outputMdPath);
-console.log("Nombre d'aspects detectes :", aspects.length);
-console.log("Score amour :", scores.love.score + "%");
-console.log("Score amitie :", scores.friendship.score + "%");
-console.log("Score travail :", scores.work.score + "%");
-console.log("Score global :", scores.global.score + "%");
+console.log("Nombre d'aspects detectes : " + aspects.length);
+console.log("Score amour : " + scores.love.score + "%");
+console.log("Score amitie : " + scores.friendship.score + "%");
+console.log("Score travail : " + scores.work.score + "%");
+console.log("Score global : " + scores.global.score + "%");
