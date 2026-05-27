@@ -1,0 +1,1061 @@
+import fs from "fs";
+
+const outputPath = "workspace/projects/ASTRO_PREMIUM/08_SORTIES/theme_astral_app_final_v3.html";
+
+const html = String.raw`<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASTRO Premium — Rapport astrologique gratuit</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Inter, Arial, sans-serif;
+  color: #ffffff;
+  background:
+    radial-gradient(circle at 15% 8%, rgba(137,95,255,.30), transparent 34%),
+    radial-gradient(circle at 85% 18%, rgba(255,232,168,.14), transparent 32%),
+    linear-gradient(135deg, #151052 0%, #090b2a 58%, #07081f 100%);
+  overflow-x: hidden;
+}
+
+.app {
+  width: min(1480px, 100%);
+  margin: 0 auto;
+  padding: 34px 28px;
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr);
+  gap: 28px;
+}
+
+.sidebar {
+  position: sticky;
+  top: 24px;
+  height: calc(100vh - 48px);
+  padding: 16px 12px;
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 30% 0%, rgba(255,232,168,.16), transparent 38%),
+    rgba(10,12,42,.68);
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 28px 80px rgba(0,0,0,.34);
+  backdrop-filter: blur(14px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nav-btn {
+  min-height: 72px;
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  color: #ffffff;
+  text-decoration: none;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.1;
+  font-weight: 900;
+  transition: .18s ease;
+}
+
+.nav-btn span {
+  display: block;
+  color: #ffe8a8;
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+
+.nav-btn:hover {
+  transform: translateX(3px);
+  border-color: rgba(255,232,168,.36);
+  background: linear-gradient(135deg, rgba(255,232,168,.18), rgba(255,255,255,.08));
+}
+
+.nav-premium {
+  margin-top: auto;
+  padding: 12px 9px;
+  border-radius: 24px;
+  text-align: center;
+  background: rgba(255,255,255,.075);
+  border: 1px solid rgba(255,232,168,.25);
+}
+
+.nav-premium small {
+  display: inline-flex;
+  padding: 5px 8px;
+  border-radius: 999px;
+  color: #ffe8a8;
+  border: 1px solid rgba(255,232,168,.25);
+  font-size: 9px;
+  font-weight: 950;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.nav-premium strong {
+  display: block;
+  font-size: 14px;
+  line-height: 1.15;
+  margin-bottom: 7px;
+}
+
+.nav-premium p {
+  margin: 0 0 10px;
+  color: rgba(255,255,255,.70);
+  font-size: 11px;
+  line-height: 1.35;
+  font-weight: 750;
+}
+
+.gold-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  width: 100%;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #fff1bd, #d6a13a);
+  color: #18122e;
+  font-size: 12px;
+  font-weight: 950;
+  text-decoration: none;
+  box-shadow: 0 16px 34px rgba(255,202,88,.18);
+}
+
+main {
+  min-width: 0;
+}
+
+section {
+  scroll-margin-top: 34px;
+  margin-bottom: 30px;
+}
+
+.hero,
+.panel,
+.chart-card,
+.offer {
+  border-radius: 42px;
+  background: linear-gradient(145deg, rgba(255,255,255,.10), rgba(255,255,255,.045));
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 34px 90px rgba(0,0,0,.30);
+}
+
+.hero {
+  padding: clamp(36px, 5vw, 64px);
+}
+
+.kicker {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 8px 13px;
+  border-radius: 999px;
+  color: #ffe8a8;
+  background: rgba(255,232,168,.11);
+  border: 1px solid rgba(255,232,168,.24);
+  font-size: 11px;
+  font-weight: 950;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.kicker::before {
+  content: "✦";
+}
+
+h1 {
+  max-width: 960px;
+  margin: 0;
+  font-size: clamp(50px, 7vw, 92px);
+  line-height: .92;
+  letter-spacing: -.07em;
+}
+
+.lead {
+  max-width: 900px;
+  margin: 22px 0 0;
+  color: rgba(255,255,255,.80);
+  font-size: clamp(17px, 2vw, 22px);
+  line-height: 1.55;
+  font-weight: 760;
+}
+
+.grid4 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.score {
+  padding: 20px;
+  border-radius: 28px;
+  background: rgba(255,255,255,.075);
+  border: 1px solid rgba(255,255,255,.13);
+}
+
+.score small {
+  display: block;
+  color: rgba(255,255,255,.70);
+  font-weight: 850;
+  margin-bottom: 8px;
+}
+
+.score strong {
+  display: block;
+  color: #ffe8a8;
+  font-size: 44px;
+  line-height: 1;
+  letter-spacing: -.06em;
+}
+
+.score span {
+  display: block;
+  margin-top: 8px;
+  color: rgba(255,255,255,.72);
+  font-weight: 800;
+}
+
+.section-title {
+  margin: 0 0 18px;
+  font-size: clamp(34px, 4vw, 58px);
+  line-height: .98;
+  letter-spacing: -.055em;
+}
+
+.section-intro {
+  max-width: 900px;
+  margin: -6px 0 24px;
+  color: rgba(255,255,255,.74);
+  font-size: 17px;
+  line-height: 1.55;
+  font-weight: 730;
+}
+
+.panel {
+  padding: 30px;
+}
+
+.personal-grid {
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: 18px;
+  margin-top: 26px;
+}
+
+.card {
+  padding: 22px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 14% 0%, rgba(255,232,168,.12), transparent 34%),
+    linear-gradient(145deg, rgba(255,255,255,.085), rgba(255,255,255,.045));
+  border: 1px solid rgba(255,255,255,.13);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+.card.gold {
+  background:
+    radial-gradient(circle at 15% 0%, rgba(255,232,168,.22), transparent 42%),
+    linear-gradient(145deg, rgba(255,232,168,.105), rgba(255,255,255,.05));
+  border-color: rgba(255,232,168,.28);
+}
+
+.card h3 {
+  margin: 0 0 10px;
+  color: #ffe8a8;
+  font-size: 23px;
+  line-height: 1.08;
+  letter-spacing: -.04em;
+}
+
+.card p {
+  margin: 0;
+  color: rgba(255,255,255,.79);
+  font-size: 15.5px;
+  line-height: 1.62;
+  font-weight: 720;
+}
+
+.free-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.free-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 13px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.075);
+  border: 1px solid rgba(255,255,255,.12);
+  color: rgba(255,255,255,.84);
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.free-pill b {
+  color: #ffe8a8;
+}
+
+.locked-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.locked {
+  padding: 20px;
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 14% 0%, rgba(255,232,168,.10), transparent 34%),
+    rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.13);
+  position: relative;
+  overflow: hidden;
+}
+
+.locked::before {
+  content: "Premium";
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: rgba(255,232,168,.12);
+  border: 1px solid rgba(255,232,168,.25);
+  color: #ffe8a8;
+  font-size: 9px;
+  font-weight: 950;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.locked h3 {
+  padding-right: 82px;
+  margin: 0 0 10px;
+  color: #ffe8a8;
+  font-size: 21px;
+  letter-spacing: -.035em;
+}
+
+.locked p {
+  margin: 0;
+  color: rgba(255,255,255,.76);
+  font-size: 15px;
+  line-height: 1.55;
+  font-weight: 720;
+}
+
+.chart-card {
+  padding: 30px;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(255,232,168,.14), transparent 28%),
+    radial-gradient(circle at 82% 14%, rgba(180,120,255,.22), transparent 36%),
+    linear-gradient(145deg, rgba(31,28,92,.985), rgba(7,10,38,.99));
+  border-color: rgba(255,232,168,.25);
+}
+
+.chart-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+
+.chart-head h2 {
+  margin: 0;
+  font-size: clamp(42px, 5vw, 66px);
+  line-height: .95;
+  letter-spacing: -.06em;
+}
+
+.badges {
+  display: flex;
+  gap: 10px;
+}
+
+.badge {
+  min-width: 92px;
+  padding: 12px;
+  border-radius: 18px;
+  text-align: center;
+  background: rgba(255,255,255,.075);
+  border: 1px solid rgba(255,255,255,.13);
+}
+
+.badge span {
+  display: block;
+  color: rgba(255,255,255,.58);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-weight: 900;
+}
+
+.badge strong {
+  display: block;
+  margin-top: 5px;
+  color: #ffe8a8;
+  font-size: 15px;
+}
+
+.wheel-wrap {
+  display: grid;
+  place-items: center;
+}
+
+.astro-wheel {
+  width: min(780px, 100%);
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 26px 46px rgba(0,0,0,.36));
+}
+
+.zlabel {
+  fill: #ffffff;
+  font: 950 13px Inter, Arial, sans-serif;
+  paint-order: stroke;
+  stroke: rgba(7,10,38,.92);
+  stroke-width: 4px;
+}
+
+.psymbol {
+  fill: #2a2354;
+  font: 950 24px Inter, Arial, sans-serif;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+
+.house {
+  fill: rgba(255,232,168,.78);
+  font: 900 13px Inter, Arial, sans-serif;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+
+.axis {
+  fill: #ffe8a8;
+  font: 950 18px Inter, Arial, sans-serif;
+  paint-order: stroke;
+  stroke: rgba(7,10,38,.78);
+  stroke-width: 4px;
+}
+
+.chart-info {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.info {
+  padding: 16px;
+  border-radius: 20px;
+  background: rgba(255,255,255,.065);
+  border: 1px solid rgba(255,255,255,.12);
+}
+
+.info small {
+  display: block;
+  color: rgba(255,255,255,.58);
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  margin-bottom: 6px;
+}
+
+.info strong {
+  display: block;
+  color: #fff;
+  font-size: 15px;
+}
+
+.info span {
+  display: block;
+  color: #ffe8a8;
+  font-size: 12px;
+  font-weight: 800;
+  margin-top: 5px;
+}
+
+.sign-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.sign-card {
+  padding: 20px;
+  border-radius: 26px;
+  background: rgba(255,255,255,.065);
+  border: 1px solid rgba(255,255,255,.12);
+}
+
+.sign-card small {
+  display: inline-flex;
+  margin-bottom: 10px;
+  padding: 6px 9px;
+  border-radius: 999px;
+  color: #ffe8a8;
+  background: rgba(255,232,168,.10);
+  border: 1px solid rgba(255,232,168,.22);
+  font-size: 10px;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+
+.sign-card h3 {
+  margin: 0 0 10px;
+  color: #ffe8a8;
+  font-size: 22px;
+  letter-spacing: -.035em;
+}
+
+.sign-card p {
+  margin: 0;
+  color: rgba(255,255,255,.78);
+  font-size: 15px;
+  line-height: 1.55;
+  font-weight: 720;
+}
+
+.offers {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 16px;
+}
+
+.offer {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.offer.featured {
+  border-color: rgba(255,232,168,.36);
+  box-shadow: 0 22px 70px rgba(255,202,88,.12);
+}
+
+.offer h3 {
+  margin: 0;
+  font-size: 26px;
+  letter-spacing: -.04em;
+}
+
+.price {
+  color: #ffe8a8;
+  font-size: 44px;
+  font-weight: 950;
+  letter-spacing: -.06em;
+}
+
+.offer p,
+.offer li {
+  color: rgba(255,255,255,.72);
+  font-weight: 730;
+  line-height: 1.45;
+}
+
+.offer ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.offer .gold-btn {
+  margin-top: auto;
+}
+
+.payment-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 14px;
+  margin-top: 20px;
+}
+
+@media (max-width: 980px) {
+  .app {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  .sidebar {
+    position: static;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .nav-premium {
+    grid-column: 1 / -1;
+  }
+
+  .grid4,
+  .personal-grid,
+  .locked-grid,
+  .chart-info,
+  .sign-grid,
+  .offers,
+  .payment-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-head {
+    display: block;
+  }
+
+  .badges {
+    margin-top: 16px;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <a class="nav-btn" href="#resume"><span>◉</span>Résumé</a>
+    <a class="nav-btn" href="#carte"><span>☿</span>Carte</a>
+    <a class="nav-btn" href="#planetes"><span>☽</span>Profil</a>
+    <a class="nav-btn" href="#maisons"><span>⌂</span>Vie</a>
+    <a class="nav-btn" href="#aspects"><span>△</span>Forces</a>
+    <a class="nav-btn" href="#compatibilite"><span>♡</span>Compat.</a>
+
+    <div class="nav-premium">
+      <small>Premium</small>
+      <strong>Lecture complète</strong>
+      <p>Thème complet, compatibilité et PDF premium.</p>
+      <a class="gold-btn" href="#premium">Débloquer</a>
+    </div>
+  </aside>
+
+  <main>
+    <section id="resume" class="hero">
+      <div class="kicker">Votre lecture gratuite</div>
+      <h1>Votre aperçu astrologique personnel</h1>
+      <p class="lead">
+        Cette lecture gratuite vous donne une première vision claire de votre profil : votre manière d’entrer dans le monde, votre trajectoire, vos forces relationnelles et les grands axes à approfondir.
+      </p>
+
+      <div class="personal-grid">
+        <div class="card">
+          <h3>Ascendant Poissons — Une sensibilité qui capte l’ambiance</h3>
+          <p>
+            Votre Ascendant Poissons donne une manière intuitive d’aborder les situations. Vous pouvez ressentir les choses avant même de les formuler clairement. Cela crée une forte capacité d’adaptation, d’écoute et de perception, mais aussi un besoin de protéger votre énergie lorsque l’environnement devient trop flou, trop bruyant ou trop exigeant.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Milieu du Ciel Sagittaire — Une trajectoire tournée vers l’ouverture</h3>
+          <p>
+            Votre Milieu du Ciel en Sagittaire suggère une évolution liée à l’apprentissage, la transmission, les voyages, l’indépendance ou les projets qui élargissent votre horizon. Vous n’êtes pas fait pour rester enfermé dans une case trop étroite : votre parcours avance mieux quand il garde du sens, de la liberté et une vision plus grande.
+          </p>
+        </div>
+
+        <div class="card gold">
+          <h3>Le message principal de votre thème gratuit</h3>
+          <p>
+            Votre carte montre une tension intéressante entre sensibilité, besoin de liberté et recherche de direction. Vous pouvez être très réceptif aux autres, mais vous avez aussi besoin d’un cap clair pour ne pas vous disperser. Votre équilibre se construit lorsque votre intuition est mise au service d’un projet concret, d’une relation saine ou d’une mission qui a du sens.
+          </p>
+        </div>
+
+        <div class="card gold">
+          <h3>Ce que cette lecture ne dévoile pas encore</h3>
+          <p>
+            La version gratuite donne les grandes lignes. La version premium analyse les planètes, maisons, aspects exacts, forces dominantes, blocages possibles, dynamique amoureuse, travail, énergie, période actuelle et conseils personnalisés.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid4">
+        <div class="score"><small>Amour</small><strong>66%</strong><span>Attraction présente</span></div>
+        <div class="score"><small>Émotion</small><strong>64%</strong><span>Réceptivité forte</span></div>
+        <div class="score"><small>Travail</small><strong>54%</strong><span>À structurer</span></div>
+        <div class="score"><small>Global</small><strong>62%</strong><span>Potentiel à développer</span></div>
+      </div>
+
+      <div class="free-pill-row">
+        <div class="free-pill"><b>Gratuit :</b> aperçu personnel</div>
+        <div class="free-pill"><b>Premium :</b> rapport complet</div>
+        <div class="free-pill"><b>Option :</b> compatibilité relationnelle</div>
+      </div>
+    </section>
+
+    <section id="carte" class="chart-card">
+      <div class="chart-head">
+        <div>
+          <div class="kicker">Carte natale premium</div>
+          <h2>Votre ciel de naissance</h2>
+          <p class="section-intro">
+            Une carte astrale repensée pour une lecture plus élégante, plus claire et plus premium.
+          </p>
+        </div>
+        <div class="badges">
+          <div class="badge"><span>ASC</span><strong>Poissons</strong></div>
+          <div class="badge"><span>MC</span><strong>Sagittaire</strong></div>
+        </div>
+      </div>
+
+      <div class="wheel-wrap">
+        <svg class="astro-wheel" viewBox="0 0 720 720" aria-label="Carte natale premium">
+          <defs>
+            <radialGradient id="wheelBg" cx="50%" cy="50%" r="60%">
+              <stop offset="0%" stop-color="#1c1a62"/>
+              <stop offset="58%" stop-color="#17154f"/>
+              <stop offset="100%" stop-color="#0b0e34"/>
+            </radialGradient>
+            <linearGradient id="signBg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#7351ff"/>
+              <stop offset="58%" stop-color="#2b225c"/>
+              <stop offset="100%" stop-color="#18133a"/>
+            </linearGradient>
+            <radialGradient id="gold" cx="35%" cy="25%" r="70%">
+              <stop offset="0%" stop-color="#fffbe8"/>
+              <stop offset="55%" stop-color="#ffe8a8"/>
+              <stop offset="100%" stop-color="#d7a94c"/>
+            </radialGradient>
+            <radialGradient id="pink" cx="35%" cy="25%" r="70%">
+              <stop offset="0%" stop-color="#fff0ff"/>
+              <stop offset="55%" stop-color="#ff9dd5"/>
+              <stop offset="100%" stop-color="#914bff"/>
+            </radialGradient>
+            <filter id="glow"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+
+          <circle cx="360" cy="360" r="302" fill="url(#wheelBg)" stroke="#ffe8a8" stroke-width="3" filter="url(#glow)"/>
+          <circle cx="360" cy="360" r="244" fill="none" stroke="rgba(255,232,168,.34)" stroke-width="1.2"/>
+          <circle cx="360" cy="360" r="118" fill="rgba(255,255,255,.025)" stroke="rgba(255,232,168,.30)" stroke-width="1.2"/>
+          <circle cx="360" cy="360" r="44" fill="none" stroke="rgba(255,232,168,.13)" stroke-width="1"/>
+          <circle cx="360" cy="360" r="4" fill="#ffe8a8"/>
+
+          <line x1="42" y1="360" x2="678" y2="360" stroke="#82f4ff" stroke-width="3" filter="url(#glow)"/>
+          <text class="axis" x="20" y="364" text-anchor="middle">ASC</text>
+          <text class="axis" x="700" y="364" text-anchor="middle">MC</text>
+
+          <g stroke="rgba(255,232,168,.42)" stroke-width="1">
+            <line x1="360" y1="242" x2="360" y2="58"/>
+            <line x1="419" y1="258" x2="511" y2="98"/>
+            <line x1="462" y1="301" x2="622" y2="209"/>
+            <line x1="478" y1="360" x2="662" y2="360"/>
+            <line x1="462" y1="419" x2="622" y2="511"/>
+            <line x1="419" y1="462" x2="511" y2="622"/>
+            <line x1="360" y1="478" x2="360" y2="662"/>
+            <line x1="301" y1="462" x2="209" y2="622"/>
+            <line x1="258" y1="419" x2="98" y2="511"/>
+            <line x1="242" y1="360" x2="58" y2="360"/>
+            <line x1="258" y1="301" x2="98" y2="209"/>
+            <line x1="301" y1="258" x2="209" y2="98"/>
+          </g>
+
+          <text class="house" x="420" y="246">1</text>
+          <text class="house" x="499" y="290">2</text>
+          <text class="house" x="536" y="360">3</text>
+          <text class="house" x="500" y="431">4</text>
+          <text class="house" x="420" y="474">6</text>
+          <text class="house" x="360" y="500">7</text>
+          <text class="house" x="300" y="474">8</text>
+          <text class="house" x="221" y="431">9</text>
+          <text class="house" x="184" y="360">10</text>
+          <text class="house" x="222" y="290">11</text>
+          <text class="house" x="300" y="246">12</text>
+
+          <g>
+            <circle cx="310" cy="68" r="24" fill="url(#signBg)" stroke="#ffe8a8"/><text class="psymbol" x="310" y="69">♓</text><text class="zlabel" x="310" y="112" text-anchor="middle">Poissons</text>
+            <circle cx="430" cy="68" r="24" fill="url(#signBg)" stroke="#ffe8a8"/><text class="psymbol" x="430" y="69">♈</text><text class="zlabel" x="430" y="112" text-anchor="middle">Bélier</text>
+            <circle cx="548" cy="136" r="24" fill="url(#signBg)" stroke="#ffe8a8"/><text class="psymbol" x="548" y="137">♉</text><text class="zlabel" x="574" y="168" text-anchor="middle">Taureau</text>
+            <circle cx="640" cy="270" r="24" fill="url(#signBg)" stroke="#ffe8a8"/><text class="psymbol" x="640" y="271">♊</text><text class="zlabel" x="604" y="270" text-anchor="end">Gémeaux</text>
+            <circle cx="640" cy="450" r="24" fill="url(#signBg)" stroke="#ffe8a8"/><text class="psymbol" x="640" y="451">♋</text><text class="zlabel" x="604" y="450" text-anchor="end">Cancer</text>
+            <circle cx="548" cy="584" r="24" fill="url(#signBg)" stroke="#ffe8a8"/><text class="psymbol" x="548" y="585">♌</text><text class="zlabel" x="574" y="616" text-anchor="middle">Lion</text>
+            <circle cx="430" cy="652" r="24" fill="url(#signBg)" stroke="#ffe8a8"/><text class="psymbol" x="430" y="653">♍</text><text class="zlabel" x="430" y="618" text-anchor="middle">Vierge</text>
+            <circle cx="310" cy="652" r="24" fill="url(#signBg)" stroke="#ffe8a8"/><text class="psymbol" x="310" y="653">♎</text><text class="zlabel" x="310" y="618" text-anchor="middle">Balance</text>
+            <circle cx="172" cy="584" r="24" fill="url(#signBg)" stroke="#ffe8a8"/><text class="psymbol" x="172" y="585">♏</text><text class="zlabel" x="146" y="616" text-anchor="middle">Scorpion</text>
+            <circle cx="80" cy="450" r="24" fill="url(#signBg)" stroke="#ffe8a8"/><text class="psymbol" x="80" y="451">♐</text><text class="zlabel" x="116" y="450" text-anchor="start">Sagittaire</text>
+            <circle cx="80" cy="270" r="24" fill="url(#signBg)" stroke="#ffe8a8"/><text class="psymbol" x="80" y="271">♑</text><text class="zlabel" x="116" y="270" text-anchor="start">Capricorne</text>
+            <circle cx="172" cy="136" r="24" fill="url(#signBg)" stroke="#ffe8a8"/><text class="psymbol" x="172" y="137">♒</text><text class="zlabel" x="146" y="168" text-anchor="middle">Verseau</text>
+          </g>
+
+          <g>
+            <circle cx="190" cy="350" r="25" fill="url(#gold)" stroke="#fff4d2"/><text class="psymbol" x="190" y="351">♃</text>
+            <circle cx="520" cy="210" r="25" fill="url(#gold)" stroke="#fff4d2"/><text class="psymbol" x="520" y="211">♇</text>
+            <circle cx="570" cy="320" r="25" fill="url(#pink)" stroke="#fff4d2"/><text class="psymbol" x="570" y="321">♂️</text>
+            <circle cx="470" cy="460" r="25" fill="url(#gold)" stroke="#fff4d2"/><text class="psymbol" x="470" y="461">♆</text>
+            <circle cx="438" cy="502" r="25" fill="url(#gold)" stroke="#fff4d2"/><text class="psymbol" x="438" y="503">☿</text>
+            <circle cx="505" cy="512" r="25" fill="url(#gold)" stroke="#fff4d2"/><text class="psymbol" x="505" y="513">♄</text>
+            <circle cx="430" cy="584" r="25" fill="url(#pink)" stroke="#fff4d2"/><text class="psymbol" x="430" y="585">♀️</text>
+            <circle cx="360" cy="590" r="25" fill="url(#gold)" stroke="#fff4d2"/><text class="psymbol" x="360" y="591">☽</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="chart-info">
+        <div class="info"><small>Ascendant</small><strong>Poissons — 26°04'53"</strong><span>Votre porte d’entrée dans le monde</span></div>
+        <div class="info"><small>Milieu du Ciel</small><strong>Sagittaire — 28°20'13"</strong><span>Votre trajectoire publique</span></div>
+        <div class="info"><small>Système</small><strong>Placidus</strong><span>Carte natale</span></div>
+      </div>
+    </section>
+
+    <section id="planetes" class="panel">
+      <h2 class="section-title">Votre profil personnel gratuit</h2>
+      <p class="section-intro">
+        Cette partie traduit les grands symboles de votre carte en lecture personnelle. L’objectif n’est pas de tout révéler gratuitement, mais de donner une vraie première impression de votre fonctionnement intérieur.
+      </p>
+
+      <div class="personal-grid">
+        <div class="card">
+          <h3>Votre moteur intérieur</h3>
+          <p>
+            Votre thème donne l’impression d’une personnalité qui avance mieux lorsqu’elle sent que ce qu’elle fait a du sens. Vous pouvez avoir besoin de comprendre pourquoi vous vous engagez, pourquoi vous donnez votre énergie et vers quoi vous vous dirigez. Sans vision claire, l’énergie peut se disperser ; avec une direction forte, elle devient beaucoup plus puissante.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Votre intelligence émotionnelle</h3>
+          <p>
+            L’Ascendant Poissons renforce la capacité à percevoir les nuances, les ambiances et les non-dits. Cela peut vous rendre très humain, très sensible à ce que vivent les autres, mais aussi plus vulnérable aux relations confuses. Votre équilibre demande de garder votre empathie, sans absorber tout ce qui ne vous appartient pas.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Amour et relationnel</h3>
+          <p>
+            Votre profil gratuit indique un besoin de relation qui ne soit pas seulement pratique ou superficielle. Vous avez besoin de ressentir une vraie connexion, une présence, une compréhension. Mais cette sensibilité demande aussi des limites claires : la compatibilité réelle dépendra beaucoup de la Lune, de Vénus, de Mars et des aspects entre deux thèmes.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Travail, énergie et ambition</h3>
+          <p>
+            Avec une coloration Sagittaire sur la trajectoire publique, le travail devient plus fluide lorsqu’il ouvre une perspective : apprendre, transmettre, créer, voyager, conseiller, développer, explorer. Les cadres trop fermés ou répétitifs peuvent finir par éteindre la motivation. Le premium permet d’identifier les domaines les plus porteurs.
+          </p>
+        </div>
+      </div>
+
+      <div class="locked-grid">
+        <div class="locked">
+          <h3>Planètes dominantes</h3>
+          <p>La version premium identifie les planètes qui pèsent vraiment dans votre thème et celles qui influencent le plus vos choix.</p>
+        </div>
+        <div class="locked">
+          <h3>Forces profondes</h3>
+          <p>Elle met en avant vos ressources naturelles, vos facilités, vos talents relationnels et vos leviers d’évolution.</p>
+        </div>
+        <div class="locked">
+          <h3>Points de vigilance</h3>
+          <p>Elle explique les zones où vous pouvez vous disperser, vous bloquer ou répéter certains schémas.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="maisons" class="panel">
+      <h2 class="section-title">Domaines de vie à approfondir</h2>
+      <p class="section-intro">
+        Les maisons astrologiques permettent de savoir dans quels domaines votre thème s’exprime le plus : amour, famille, travail, argent, image personnelle, projets, spiritualité ou transformation.
+      </p>
+
+      <div class="personal-grid">
+        <div class="card">
+          <h3>Identité et image extérieure</h3>
+          <p>
+            Votre Ascendant montre la façon dont vous entrez en contact avec le monde. Ici, la tonalité Poissons suggère une présence sensible, adaptable et parfois difficile à saisir au premier regard. Vous pouvez être perçu comme intuitif, réceptif, inspiré, mais aussi changeant selon l’environnement.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Carrière et direction</h3>
+          <p>
+            Le Milieu du Ciel en Sagittaire indique que votre chemin professionnel gagne en force lorsqu’il garde une dimension d’ouverture : apprendre, transmettre, conseiller, explorer, créer des ponts, sortir d’un cadre trop limité. Vous avez besoin d’un horizon, pas seulement d’une fonction.
+          </p>
+        </div>
+      </div>
+
+      <div class="card gold" style="margin-top:18px;">
+        <h3>Ce que le premium ajoute ici</h3>
+        <p>
+          La version premium ne se contente pas de décrire les maisons en général. Elle relie chaque maison à vos placements réels, à vos planètes, à vos aspects et à vos priorités personnelles : amour, travail, argent, équilibre, projet et période actuelle.
+        </p>
+      </div>
+    </section>
+
+    <section id="aspects" class="panel">
+      <h2 class="section-title">Forces et tensions de votre thème</h2>
+      <p class="section-intro">
+        Les aspects sont essentiels : ils montrent comment les différentes parties de votre personnalité dialoguent entre elles. C’est souvent là que le thème devient vraiment personnel.
+      </p>
+
+      <div class="personal-grid">
+        <div class="card">
+          <h3>Votre potentiel naturel</h3>
+          <p>
+            Votre thème semble porter une capacité à ressentir, comprendre et relier des éléments qui ne sont pas toujours évidents pour les autres. Cela peut être une force créative, relationnelle ou intuitive. Utilisée consciemment, cette qualité peut devenir un vrai avantage dans les projets et les relations.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Votre défi principal</h3>
+          <p>
+            Le défi peut venir d’un écart entre ce que vous ressentez et ce que vous structurez concrètement. Il peut y avoir beaucoup d’intuition, mais la réussite demande de transformer cette intuition en décision, en cadre et en action suivie.
+          </p>
+        </div>
+      </div>
+
+      <div class="locked-grid">
+        <div class="locked"><h3>Aspects exacts</h3><p>La version premium calcule les aspects les plus importants, avec leur force réelle et leur influence concrète.</p></div>
+        <div class="locked"><h3>Hiérarchie du thème</h3><p>Elle distingue ce qui est central de ce qui est secondaire, pour éviter une lecture confuse ou trop générale.</p></div>
+        <div class="locked"><h3>Conseils personnalisés</h3><p>Elle transforme l’analyse en conseils applicables : amour, travail, énergie, relationnel et évolution.</p></div>
+      </div>
+    </section>
+
+    <section id="compatibilite" class="panel">
+      <h2 class="section-title">Compatibilité : module séparé</h2>
+      <p class="section-intro">
+        Certaines personnes veulent uniquement leur thème personnel. D’autres veulent comparer leur thème avec une personne rencontrée, leur conjoint, leur épouse, un ex, ou une relation importante. La compatibilité est donc pensée comme une option séparée.
+      </p>
+
+      <div class="grid4">
+        <div class="score"><small>Amour</small><strong>66%</strong><span>Attraction présente</span></div>
+        <div class="score"><small>Émotion</small><strong>64%</strong><span>Connexion possible</span></div>
+        <div class="score"><small>Travail</small><strong>54%</strong><span>À clarifier</span></div>
+        <div class="score"><small>Global</small><strong>62%</strong><span>Potentiel réel</span></div>
+      </div>
+
+      <div class="personal-grid" style="margin-top:18px;">
+        <div class="card">
+          <h3>Ce que le gratuit peut montrer</h3>
+          <p>
+            Le score gratuit donne une première tendance : attirance, compréhension, fluidité émotionnelle ou zones de tension. Il sert à donner envie d’aller plus loin, sans prétendre résumer toute la relation.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Ce que la synastrie premium analyse</h3>
+          <p>
+            La compatibilité premium compare les deux thèmes en profondeur : Soleil, Lune, Ascendant, Vénus, Mars, Mercure, maisons relationnelles et aspects exacts entre les deux personnes.
+          </p>
+        </div>
+      </div>
+
+      <h2 class="section-title" style="margin-top:32px;">Compatibilités générales entre signes</h2>
+      <p class="section-intro">
+        Ces affinités donnent une première lecture simple, utile et attractive. Mais elles ne remplacent pas une vraie synastrie complète.
+      </p>
+
+      <div class="sign-grid">
+        <div class="sign-card">
+          <small>Feu + Air</small>
+          <h3>Stimulation et mouvement</h3>
+          <p>Bélier, Lion, Sagittaire avec Gémeaux, Balance, Verseau : dynamique vive, échanges rapides, enthousiasme, envie d’avancer. Attention à l’instabilité si rien n’est posé.</p>
+        </div>
+
+        <div class="sign-card">
+          <small>Terre + Eau</small>
+          <h3>Stabilité et profondeur</h3>
+          <p>Taureau, Vierge, Capricorne avec Cancer, Scorpion, Poissons : lien souvent plus sécurisant, émotionnel et constructif. Attention à la peur du changement ou aux non-dits.</p>
+        </div>
+
+        <div class="sign-card">
+          <small>Feu + Eau</small>
+          <h3>Attraction forte, rythme différent</h3>
+          <p>Le Feu pousse, l’Eau ressent. Cela peut créer une intensité puissante, mais aussi des malentendus si l’un agit trop vite et l’autre se sent submergé.</p>
+        </div>
+
+        <div class="sign-card">
+          <small>Air + Terre</small>
+          <h3>Idées contre réalisme</h3>
+          <p>L’Air veut comprendre, parler, bouger. La Terre veut construire, sécuriser, concrétiser. Très utile en projet, mais le rythme affectif peut demander des ajustements.</p>
+        </div>
+      </div>
+
+      <div class="card gold" style="margin-top:18px;">
+        <h3>La vraie compatibilité ne s’arrête pas au signe solaire</h3>
+        <p>
+          Deux personnes peuvent être “compatibles” en signes solaires mais très complexes en Lune, Vénus ou Mars. À l’inverse, deux signes réputés difficiles peuvent fonctionner grâce à de très beaux aspects de synastrie.
+        </p>
+      </div>
+    </section>
+
+    <section id="premium" class="panel">
+      <h2 class="section-title">Choisissez votre lecture premium</h2>
+      <p class="section-intro">
+        La version gratuite donne un aperçu personnel. La version premium donne une lecture complète, plus précise, plus structurée, prête à conserver ou à partager.
+      </p>
+
+      <div class="offers">
+        <div class="offer">
+          <div class="kicker">Base premium</div>
+          <h3>Thème personnel</h3>
+          <div class="price">4,99 €</div>
+          <p>Pour comprendre votre profil, vos forces, vos tendances en amour, travail, énergie et période actuelle.</p>
+          <ul>
+            <li>Personnalité, Soleil, Lune, Ascendant</li>
+            <li>Amour, travail, énergie, équilibre</li>
+            <li>Forces, blocages et conseils personnalisés</li>
+          </ul>
+          <a class="gold-btn" href="#">Choisir le thème personnel</a>
+        </div>
+
+        <div class="offer featured">
+          <div class="kicker">Upsell relation</div>
+          <h3>Compatibilité premium</h3>
+          <div class="price">6,99 €</div>
+          <p>Pour comparer votre thème avec celui d’une personne importante : rencontre, conjoint, épouse, ex ou relation forte.</p>
+          <ul>
+            <li>Synastrie complète</li>
+            <li>Attraction, émotion, communication</li>
+            <li>Forces du lien et zones de vigilance</li>
+          </ul>
+          <a class="gold-btn" href="#">Choisir la compatibilité</a>
+        </div>
+
+        <div class="offer">
+          <div class="kicker">Meilleure valeur</div>
+          <h3>Pack complet</h3>
+          <div class="price">9,99 €</div>
+          <p>Pour obtenir votre thème personnel complet et une compatibilité premium avec une personne.</p>
+          <ul>
+            <li>Thème personnel complet</li>
+            <li>Compatibilité détaillée</li>
+            <li>PDF premium et synthèse finale</li>
+          </ul>
+          <a class="gold-btn" href="#">Choisir le pack complet</a>
+        </div>
+      </div>
+
+      <div class="payment-grid">
+        <div class="card"><h3>Google Play</h3><p>Paiement intégré idéal pour l’application mobile Android une fois l’app déployée.</p></div>
+        <div class="card"><h3>PayPal</h3><p>Solution rassurante pour les utilisateurs qui préfèrent payer sans saisir directement leur carte.</p></div>
+        <div class="card"><h3>Facture mobile</h3><p>Option possible selon opérateurs, pays et solution de paiement retenue. À valider au moment du déploiement.</p></div>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>`;
+
+fs.writeFileSync(outputPath, html, "utf8");
+
+console.log("Application finale V3 creee avec succes :");
+console.log(outputPath);
